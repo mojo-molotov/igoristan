@@ -1,0 +1,96 @@
+name: CI/PR
+
+on:
+  pull_request:
+    branches: ['**']
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  format-check:
+    runs-on: ubuntu-latest
+    env:
+      WIREIT_CACHE: github
+    steps:
+      - uses: actions/checkout@v4
+      - uses: google/wireit@setup-github-actions-caching/v1
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+      - name: Install project
+        run: make install
+      - name: Formatcheck
+        run: make ci:format-check
+
+  lint:
+    runs-on: ubuntu-latest
+    env:
+      WIREIT_CACHE: github
+    steps:
+      - uses: actions/checkout@v4
+      - uses: google/wireit@setup-github-actions-caching/v1
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+      - name: Install project
+        run: make install
+      - uses: actions/cache@v4
+        with:
+          path: .eslintcache
+          key: eslint-cache-${{ runner.os }}-${{ hashFiles('.eslintcache') }}
+          restore-keys: |
+            eslint-cache-${{ runner.os }}-
+      - name: Run ESLint
+        run: make lint
+
+  typecheck-project:
+    runs-on: ubuntu-latest
+    env:
+      WIREIT_CACHE: github
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+      - uses: google/wireit@setup-github-actions-caching/v1
+      - name: Install project
+        run: make install
+      - name: Typecheck
+        run: make typecheck
+
+  build:
+    runs-on: ubuntu-latest
+    env:
+      WIREIT_CACHE: github
+    if: github.event.pull_request.draft == false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: google/wireit@setup-github-actions-caching/v1
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+      - name: Install & build project
+        run: make

@@ -1,15 +1,15 @@
-import "./Layout.css";
-
-import logoUrl from "../assets/logo.svg";
-import { Link } from "../components/Link";
+import '../App.css';
+import './Layout.css';
+import logoUrl from '../../assets/logo.svg';
+import { Link } from '../components/Link';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div
       style={{
-        display: "flex",
-        maxWidth: 900,
-        margin: "auto",
+        display: 'flex',
+        margin: 'auto',
+        maxWidth: 900
       }}
     >
       <Sidebar>
@@ -25,15 +25,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 function Sidebar({ children }: { children: React.ReactNode }) {
   return (
     <div
-      id="sidebar"
       style={{
-        padding: 20,
+        borderRight: '2px solid #eee',
+        flexDirection: 'column',
+        lineHeight: '1.8em',
+        display: 'flex',
         flexShrink: 0,
-        display: "flex",
-        flexDirection: "column",
-        lineHeight: "1.8em",
-        borderRight: "2px solid #eee",
+        padding: 20
       }}
+      id="sidebar"
     >
       {children}
     </div>
@@ -44,12 +44,12 @@ function Content({ children }: { children: React.ReactNode }) {
   return (
     <div id="page-container">
       <div
-        id="page-content"
         style={{
-          padding: 20,
+          minHeight: '100vh',
           paddingBottom: 50,
-          minHeight: "100vh",
+          padding: 20
         }}
+        id="page-content"
       >
         {children}
       </div>
@@ -61,8 +61,8 @@ function Logo() {
   return (
     <div
       style={{
-        marginTop: 20,
         marginBottom: 10,
+        marginTop: 20
       }}
     >
       <a href="/">

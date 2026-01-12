@@ -1,0 +1,7 @@
+@import 'tailwindcss';
+
+/* Reset CSS */
+
+body {
+  overflow-x: hidden;
+}
