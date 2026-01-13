@@ -1,10 +1,16 @@
-import type { ReactNode } from 'react';
+import type { FunctionComponent, ReactNode } from 'react';
 
 import { usePageContext } from 'vike-react/usePageContext';
 
 import { cn } from '@/lib/utils';
 
-export function Link({ className, children, href }: { children: ReactNode; className?: string; href: string }) {
+interface LinkProps {
+  children: ReactNode;
+  className?: string;
+  href: string;
+}
+
+const Link: FunctionComponent<LinkProps> = ({ className, children, href }) => {
   const pageContext = usePageContext();
   const { urlPathname } = pageContext;
   const isActive = href === '/' ? urlPathname === href : urlPathname.startsWith(href);
@@ -22,4 +28,6 @@ export function Link({ className, children, href }: { children: ReactNode; class
       {children}
     </a>
   );
-}
+};
+
+export default Link;

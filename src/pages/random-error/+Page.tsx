@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
+import { useForceRemount } from '@/hooks/useForceRemountKey';
 import { formatPageTitle } from '@/lib/formatters';
 import BackToHome from '@/components/BackToHome';
 import Main from '@/fragments/Main';
@@ -10,8 +10,9 @@ import H1 from '@/fragments/H1';
 import welcomeGifUrl from '../../../assets/gifs/welcome.gif';
 import { ERROR_CODE, PAGE_TITLE } from './constants';
 
-function RandomErrorContent() {
+const RandomError = () => {
   const [state, setState] = useState<'loading' | 'success' | 'error'>('loading');
+  const remountKey = useForceRemount();
 
   useEffect(() => {
     const hasError = Math.random() < 0.3;
@@ -27,7 +28,7 @@ function RandomErrorContent() {
   }, []);
 
   return (
-    <Main className="justify-center">
+    <Main className="justify-center" key={remountKey}>
       <section
         id={`content-${state === 'error' ? 'error' : state === 'loading' ? 'loading' : 'success'}`}
         className="my-8 flex flex-col items-center space-y-4"
@@ -50,18 +51,6 @@ function RandomErrorContent() {
       </section>
     </Main>
   );
-}
-
-function RandomError() {
-  const [mountKey, setMountKey] = useState(uuidv4());
-
-  useEffect(() => {
-    // Force a re-render to break Vike's laziness and ensure the page title
-    // is always updated, even without the fake loading delay
-    setMountKey(uuidv4());
-  }, []);
-
-  return <RandomErrorContent key={mountKey} />;
-}
+};
 
 export default RandomError;

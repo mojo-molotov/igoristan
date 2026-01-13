@@ -7,12 +7,10 @@ interface H1Props extends HTMLAttributes<HTMLHeadingElement> {
   className?: string;
 }
 
-const H1: FunctionComponent<H1Props> = ({ className, children, ...props }) => {
-  return (
-    <h1 className={cn('text-2xl', className)} {...props}>
-      {children}
-    </h1>
-  );
-};
+const H1: FunctionComponent<H1Props> = ({ className, children, ...props }) => (
+  <h1 className={cn('text-2xl', className)} {...props}>
+    {children}
+  </h1>
+);
 
 export default H1;

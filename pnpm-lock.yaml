@@ -32,9 +32,6 @@ importers:
       uuid:
         specifier: ^13.0.0
         version: 13.0.0
-      valibot:
-        specifier: ^1.0.0
-        version: 1.2.0(typescript@5.9.3)
       vike:
         specifier: ^0.4.251
         version: 0.4.252(react-streaming@0.4.15(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(vite@7.3.1(@types/node@22.19.5)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2))
@@ -2946,14 +2943,6 @@ packages:
   uuid@13.0.0:
     resolution: {integrity: sha512-XQegIaBTVUjSHliKqcnFqYypAd4S+WCYt5NIeRs6w/UAry7z8Y9j5ZwRRL4kzq9U3sD6v+85er9FvkEaBpji2w==}
     hasBin: true
-
-  valibot@1.2.0:
-    resolution: {integrity: sha512-mm1rxUsmOxzrwnX5arGS+U4T25RdvpPjPN4yR0u9pUBov9+zGVtO84tif1eY4r6zWxVxu3KzIyknJy3rxfRZZg==}
-    peerDependencies:
-      typescript: '>=5'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
 
   vike-react@0.6.18:
     resolution: {integrity: sha512-kMoRGhdP7nSE59iWMQ3SkC9O4ISdHhnxJlwwH03VUFuUpZp2OgLUCPmlgBeIj7TU0z+P2KHhschmojvcZanL4w==}
@@ -6019,10 +6008,6 @@ snapshots:
   util-deprecate@1.0.2: {}
 
   uuid@13.0.0: {}
-
-  valibot@1.2.0(typescript@5.9.3):
-    optionalDependencies:
-      typescript: 5.9.3
 
   vike-react@0.6.18(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(vike@0.4.252(react-streaming@0.4.15(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(vite@7.3.1(@types/node@22.19.5)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2))):
     dependencies:
