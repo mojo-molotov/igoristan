@@ -1,3 +1,4 @@
+import BackToHome from '@/components/BackToHome';
 import LoginForm from '@/components/LoginForm';
 import { useAuth } from '@/hooks/useAuth';
 import ROUTES from '@/config/routes';
@@ -24,6 +25,7 @@ const Dashboard = () => {
     return (
       <Main className="justify-center">
         <LoginForm onLogin={login} />
+        <BackToHome />
       </Main>
     );
   }
