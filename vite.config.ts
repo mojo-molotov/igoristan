@@ -14,39 +14,6 @@ const AUTO_OPEN_VISUALIZER: boolean = false;
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    tailwindcss(),
-    viteCompression({ algorithm: 'gzip' }),
-    viteCompression({
-      compressionOptions: {
-        level: 11
-      },
-
-      algorithm: 'brotliCompress',
-      deleteOriginFile: false,
-      threshold: 1024,
-      ext: '.br'
-    }),
-
-    visualizer({
-      filename: 'stats-sunburst.html',
-      open: AUTO_OPEN_VISUALIZER,
-      template: 'treemap'
-    }),
-    // {
-    //   closeBundle() {
-    //     const distPath = path.resolve(__dirname, 'dist');
-    //     const indexPath = path.join(distPath, 'index.html');
-    //     const notFoundPath = path.join(distPath, '404.html');
-    //     if (fs.existsSync(indexPath)) {
-    //       fs.copyFileSync(indexPath, notFoundPath);
-    //     }
-    //   },
-    //   name: 'copy-404-for-gh-pages'
-    // },
-    vike()
-  ],
   build: {
     rollupOptions: {
       output: {
@@ -78,6 +45,28 @@ export default defineConfig({
     minify: 'terser',
     cssMinify: true
   },
+  plugins: [
+    react(),
+    tailwindcss(),
+    viteCompression({ algorithm: 'gzip' }),
+    viteCompression({
+      compressionOptions: {
+        level: 11
+      },
+
+      algorithm: 'brotliCompress',
+      deleteOriginFile: false,
+      threshold: 1024,
+      ext: '.br'
+    }),
+
+    visualizer({
+      filename: 'stats-sunburst.html',
+      open: AUTO_OPEN_VISUALIZER,
+      template: 'treemap'
+    }),
+    vike()
+  ],
 
   resolve: {
     alias: {
