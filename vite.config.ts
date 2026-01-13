@@ -12,7 +12,6 @@ import { tryToMatchAnyUnknownChunkId } from './vite/appChunking';
 
 const AUTO_OPEN_VISUALIZER: boolean = false;
 
-// https://vite.dev/config/
 export default defineConfig({
   build: {
     rollupOptions: {
