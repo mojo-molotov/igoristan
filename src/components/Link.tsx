@@ -1,11 +1,24 @@
+import type { ReactNode } from 'react';
+
 import { usePageContext } from 'vike-react/usePageContext';
 
-export function Link({ children, href }: { children: string; href: string }) {
+import { cn } from '@/lib/utils';
+
+export function Link({ className, children, href }: { children: ReactNode; className?: string; href: string }) {
   const pageContext = usePageContext();
   const { urlPathname } = pageContext;
   const isActive = href === '/' ? urlPathname === href : urlPathname.startsWith(href);
+
   return (
-    <a className={isActive ? 'is-active' : undefined} href={href}>
+    <a
+      className={cn(
+        {
+          'is-active': isActive
+        },
+        className
+      )}
+      href={href}
+    >
       {children}
     </a>
   );
