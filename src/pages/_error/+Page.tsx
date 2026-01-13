@@ -2,10 +2,8 @@ import { usePageContext } from 'vike-react/usePageContext';
 import { useEffect } from 'react';
 
 import { formatPageTitle } from '@/lib/formatters';
-import { Link } from '@/components/Link';
-import ROUTES from '@/config/routes';
+import BackToHome from '@/components/BackToHome';
 import Main from '@/fragments/Main';
-import BRAND from '@/config/brand';
 import H1 from '@/fragments/H1';
 
 export default function Page() {
@@ -23,9 +21,7 @@ export default function Page() {
             <H1 className="text-4xl">404</H1>
           </div>
 
-          <Link className="mx-auto w-fit py-6 text-xl no-underline" href={ROUTES.HOME}>
-            ← Back to {BRAND}
-          </Link>
+          <BackToHome />
         </section>
       </Main>
     );
