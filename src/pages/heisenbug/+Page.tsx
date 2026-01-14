@@ -3,9 +3,11 @@ import { useEffect, useState } from 'react';
 import { useForceRemount } from '@/hooks/useForceRemountKey';
 import { formatPageTitle } from '@/lib/formatters';
 import BackToHome from '@/components/BackToHome';
+import ErrorCode from '@/components/ErrorCode';
 import Main from '@/fragments/Main';
 import { cn } from '@/lib/utils';
 import H1 from '@/fragments/H1';
+import H2 from '@/fragments/H2';
 
 import welcomeGifUrl from '../../../assets/gifs/welcome.gif';
 import { ERROR_CODE, PAGE_TITLE } from './constants';
@@ -38,7 +40,10 @@ const RandomError = () => {
         </div>
 
         <div className={cn({ hidden: state !== 'error' }, 'text-center')}>
-          <H1 className="text-9xl font-extrabold text-red-600">{ERROR_CODE}</H1>
+          <h1 className="text-4xl">Wow!</h1>
+          <ErrorCode asChild>
+            <H2>{ERROR_CODE}</H2>
+          </ErrorCode>
           <h2 className="mt-4 text-3xl font-bold">Internal Server Error</h2>
           <p className="mt-2 text-gray-600">The figatellu has escaped from the charcuterie. Please try again later.</p>
           <BackToHome />

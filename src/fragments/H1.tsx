@@ -8,7 +8,7 @@ interface H1Props extends HTMLAttributes<HTMLHeadingElement> {
 }
 
 const H1: FunctionComponent<H1Props> = ({ className, children, ...props }) => (
-  <h1 className={cn('text-2xl', className)} {...props}>
+  <h1 className={cn('text-9xl', className)} {...props}>
     {children}
   </h1>
 );
