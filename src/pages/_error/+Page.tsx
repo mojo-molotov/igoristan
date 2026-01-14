@@ -9,13 +9,17 @@ import H1 from '@/fragments/H1';
 import H2 from '@/fragments/H2';
 
 export default function Page() {
-  const { is404 } = usePageContext();
+  const pageContext = usePageContext();
+  const { is404 } = pageContext;
+
+  const force500 = pageContext.urlParsed.search.figatellu === 'donkey-sausage-is-an-heresy';
+  const show404 = is404 && !force500;
 
   useEffect(() => {
-    document.title = is404 ? formatPageTitle({ pageTitle: '404' }) : formatPageTitle({ pageTitle: '500' });
-  }, [is404]);
+    document.title = show404 ? formatPageTitle({ pageTitle: '404' }) : formatPageTitle({ pageTitle: '500' });
+  }, [show404]);
 
-  if (is404) {
+  if (show404) {
     return (
       <Main className="justify-center text-center">
         <section className="mt-7 space-y-4" id="404">
@@ -35,7 +39,6 @@ export default function Page() {
             <H2>500</H2>
           </ErrorCode>
         </div>
-
         <p>Something went wrong.</p>
       </section>
     </Main>
