@@ -12,7 +12,7 @@ export default function Page() {
   const { is404 } = usePageContext();
 
   useEffect(() => {
-    if (is404) document.title = formatPageTitle({ pageTitle: '404' });
+    document.title = is404 ? formatPageTitle({ pageTitle: '404' }) : formatPageTitle({ pageTitle: '500' });
   }, [is404]);
 
   if (is404) {
