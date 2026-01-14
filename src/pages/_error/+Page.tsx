@@ -39,7 +39,7 @@ export default function Page() {
             <H2>500</H2>
           </ErrorCode>
         </div>
-        <p>Something went wrong.</p>
+        <p className="mt-2 text-gray-600">You donkey sausage eater. Server exploded from pure disgust.</p>
       </section>
     </Main>
   );
