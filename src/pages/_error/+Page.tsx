@@ -1,6 +1,7 @@
 import { usePageContext } from 'vike-react/usePageContext';
 import { useEffect } from 'react';
 
+import BackToSicily from '@/components/BackToSicily';
 import { formatPageTitle } from '@/lib/formatters';
 import BackToHome from '@/components/BackToHome';
 import ErrorCode from '@/components/ErrorCode';
@@ -39,7 +40,12 @@ export default function Page() {
             <H2>500</H2>
           </ErrorCode>
         </div>
-        <p className="mt-2 text-gray-600">You donkey sausage eater. Server exploded from pure disgust.</p>
+        <p className="mt-2 text-gray-600">
+          You donkey sausage eater.
+          <br />
+          Server exploded from pure disgust.
+        </p>
+        <BackToSicily />
       </section>
     </Main>
   );
