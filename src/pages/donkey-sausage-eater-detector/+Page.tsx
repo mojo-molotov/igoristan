@@ -12,7 +12,7 @@ import H1 from '@/fragments/H1';
 import H2 from '@/fragments/H2';
 
 import welcomeGifUrl from '../../../assets/gifs/welcome.gif';
-import { ERROR_CODE, PAGE_TITLE } from './constants';
+import { ERROR_PAGE_TITLE, PAGE_TITLE } from './constants';
 
 const RandomError = () => {
   const [state, setState] = useState<'loading' | 'success' | 'error'>('loading');
@@ -23,7 +23,7 @@ const RandomError = () => {
 
     const timeoutId = setTimeout(() => {
       document.title = formatPageTitle({
-        pageTitle: hasError ? ERROR_CODE : PAGE_TITLE
+        pageTitle: hasError ? ERROR_PAGE_TITLE : PAGE_TITLE
       });
       setState(hasError ? 'error' : 'success');
     }, 800);
@@ -44,7 +44,7 @@ const RandomError = () => {
         <div className={cn({ hidden: state !== 'error' }, 'text-center')}>
           <h1 className="text-4xl">Wow!</h1>
           <ErrorCode asChild>
-            <H2>{ERROR_CODE}</H2>
+            <H2>500</H2>
           </ErrorCode>
           <h2 className="mt-4 text-3xl font-bold">Internal Server Error</h2>
           <InternalErrorMsg />
