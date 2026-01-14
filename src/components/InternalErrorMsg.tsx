@@ -6,6 +6,7 @@ import { pickRandom } from '@/lib/pickRandom';
 import { cn } from '@/lib/utils';
 
 interface InternalErrorMsgProps {
+  withoutFadeIn?: boolean;
   className?: string;
 }
 
@@ -22,7 +23,7 @@ const texts = [
   'The Emperor himself has decreed your immediate exile.'
 ] as const;
 
-const InternalErrorMsg: FunctionComponent<InternalErrorMsgProps> = ({ className }) => {
+const InternalErrorMsg: FunctionComponent<InternalErrorMsgProps> = ({ withoutFadeIn, className }) => {
   const [text, setText] = useState<(typeof texts)[number] | null>(null);
 
   useEffect(() => {
@@ -33,7 +34,7 @@ const InternalErrorMsg: FunctionComponent<InternalErrorMsgProps> = ({ className 
     <p className={cn('mt-2 text-gray-600', className)}>
       You donkey sausage eater.
       <br />
-      {text ? <span className="animate-fade-in">{text}</span> : '\u00A0'}
+      {text ? <span className={!withoutFadeIn ? 'animate-fade-in' : undefined}>{text}</span> : '\u00A0'}
     </p>
   );
 };
