@@ -31,6 +31,7 @@ export default [
 
       'import-x/consistent-type-specifier-style': [ERROR, 'prefer-top-level'],
       '@typescript-eslint/no-unsafe-declaration-merging': ERROR,
+      '@typescript-eslint/no-explicit-any': OFF,
       'unused-imports/no-unused-imports': ERROR,
       'react/jsx-no-useless-fragment': ERROR,
 

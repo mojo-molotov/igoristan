@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { useForceRemount } from '@/hooks/useForceRemountKey';
+import InternalErrorMsg from '@/components/InternalErrorMsg';
 import BackToSicily from '@/components/BackToSicily';
 import { formatPageTitle } from '@/lib/formatters';
 import BackToHome from '@/components/BackToHome';
@@ -46,11 +47,7 @@ const RandomError = () => {
             <H2>{ERROR_CODE}</H2>
           </ErrorCode>
           <h2 className="mt-4 text-3xl font-bold">Internal Server Error</h2>
-          <p className="mt-2 text-gray-600">
-            You donkey sausage eater.
-            <br />
-            The Empire casts you out into darkness for your donkey sausage sins!
-          </p>
+          <InternalErrorMsg />
           <BackToSicily />
         </div>
 
