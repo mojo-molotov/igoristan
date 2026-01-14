@@ -16,7 +16,6 @@ jobs:
       WIREIT_CACHE: github
     steps:
       - uses: actions/checkout@v4
-      - uses: google/wireit@setup-github-actions-caching/v1
       - uses: pnpm/action-setup@v4
         with:
           version: 10
@@ -25,6 +24,7 @@ jobs:
         with:
           node-version: 22
           cache: 'pnpm'
+      - uses: google/wireit@setup-github-actions-caching/v2
       - name: Install project
         run: make install
       - name: Formatcheck
@@ -36,7 +36,6 @@ jobs:
       WIREIT_CACHE: github
     steps:
       - uses: actions/checkout@v4
-      - uses: google/wireit@setup-github-actions-caching/v1
       - uses: pnpm/action-setup@v4
         with:
           version: 10
@@ -45,6 +44,7 @@ jobs:
         with:
           node-version: 22
           cache: 'pnpm'
+      - uses: google/wireit@setup-github-actions-caching/v2
       - name: Install project
         run: make install
       - uses: actions/cache@v4
@@ -70,7 +70,7 @@ jobs:
         with:
           node-version: 22
           cache: 'pnpm'
-      - uses: google/wireit@setup-github-actions-caching/v1
+      - uses: google/wireit@setup-github-actions-caching/v2
       - name: Install project
         run: make install
       - name: Typecheck
@@ -78,12 +78,11 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
     env:
       WIREIT_CACHE: github
-    if: github.event.pull_request.draft == false
     steps:
       - uses: actions/checkout@v4
-      - uses: google/wireit@setup-github-actions-caching/v1
       - uses: pnpm/action-setup@v4
         with:
           version: 10
@@ -92,5 +91,6 @@ jobs:
         with:
           node-version: 22
           cache: 'pnpm'
+      - uses: google/wireit@setup-github-actions-caching/v2
       - name: Install & build project
         run: make
