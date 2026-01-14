@@ -1,6 +1,8 @@
 import { useLocalStorage } from 'usehooks-ts';
 import { useEffect, useState } from 'react';
 
+import { randint } from '@/lib/randint';
+
 const VALID_USERNAME = 'admin';
 const VALID_PASSWORD = 'admin';
 
@@ -10,7 +12,7 @@ export const useAuth = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const delay = 500 * (Math.random() * 4 + 1);
+    const delay = 500 * randint(1, 5);
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, delay);
