@@ -11,6 +11,28 @@
   }
 }
 
+@keyframes swing {
+  20% {
+    transform: rotate(15deg);
+  }
+  40% {
+    transform: rotate(-10deg);
+  }
+  60% {
+    transform: rotate(5deg);
+  }
+  80% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@utility animate-swing {
+  animation: swing 1234ms ease-out;
+}
+
 @utility animate-fade-in {
   animation: fade-in 0.5s ease-in;
 }

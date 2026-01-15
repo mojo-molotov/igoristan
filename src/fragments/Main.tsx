@@ -8,7 +8,7 @@ interface MainProps {
 }
 
 const Main: FunctionComponent<MainProps> = ({ className, children }) => (
-  <main className={cn('text-foreground flex w-full max-w-full flex-1 flex-col gap-7 p-7', className)}>{children}</main>
+  <main className={cn('flex w-full max-w-full flex-1 flex-col gap-7 p-7', className)}>{children}</main>
 );
 
 export default Main;
