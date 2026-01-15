@@ -1,1 +1,3 @@
-export default 'File upload simulator';
+import { formatPageTitle } from '@/lib/formatters';
+
+export default formatPageTitle({ pageTitle: 'File upload simulator' });

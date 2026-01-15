@@ -1,5 +1,6 @@
 import BackToHome from '@/components/BackToHome';
 import LoginForm from '@/components/LoginForm';
+import Loading from '@/components/Loading';
 import { useAuth } from '@/hooks/useAuth';
 import ROUTES from '@/config/routes';
 import Main from '@/fragments/Main';
@@ -13,8 +14,7 @@ const DashboardNested = () => {
       <Main className="justify-center">
         <div className="flex min-h-100 items-center justify-center">
           <div className="text-center">
-            <div className="mx-auto h-16 w-16 animate-spin rounded-full border-b-4 border-purple-600" />
-            <p className="mt-4 text-gray-600">Loading...</p>
+            <Loading />
           </div>
         </div>
       </Main>
