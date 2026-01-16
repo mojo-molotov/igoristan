@@ -1,6 +1,7 @@
 import type { FunctionComponent, ReactNode } from 'react';
 
 import '../App.css';
+import '../css/aesthetic.css';
 
 interface LayoutProps {
   children: React.ReactNode;

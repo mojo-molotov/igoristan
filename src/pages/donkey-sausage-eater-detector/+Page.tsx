@@ -1,44 +1,47 @@
 import { useEffect, useState } from 'react';
 
-import { useForceRemount } from '@/hooks/useForceRemountKey';
 import InternalErrorMsg from '@/components/InternalErrorMsg';
 import BackToSicily from '@/components/BackToSicily';
 import { formatPageTitle } from '@/lib/formatters';
 import BackToHome from '@/components/BackToHome';
 import ErrorCode from '@/components/ErrorCode';
+import { randint } from '@/lib/randint';
 import Main from '@/fragments/Main';
 import { cn } from '@/lib/utils';
-import H1 from '@/fragments/H1';
 import H2 from '@/fragments/H2';
 
 import welcomeGifUrl from '../../../assets/gifs/welcome.gif';
 import { ERROR_PAGE_TITLE, PAGE_TITLE } from './constants';
 
-const RandomError = () => {
+const DonkeySausageEaterDetector = () => {
   const [state, setState] = useState<'loading' | 'success' | 'error'>('loading');
-  const remountKey = useForceRemount();
 
   useEffect(() => {
     const hasError = Math.random() < 0.3;
 
-    const timeoutId = setTimeout(() => {
-      document.title = formatPageTitle({
-        pageTitle: hasError ? ERROR_PAGE_TITLE : PAGE_TITLE
-      });
-      setState(hasError ? 'error' : 'success');
-    }, 800);
+    const timeoutId = setTimeout(
+      () => {
+        document.title = formatPageTitle({
+          pageTitle: hasError ? ERROR_PAGE_TITLE : PAGE_TITLE
+        });
+        setState(hasError ? 'error' : 'success');
+      },
+      randint(1, 5) * 250
+    );
 
     return () => clearTimeout(timeoutId);
   }, []);
 
   return (
-    <Main className="justify-center" key={remountKey}>
+    <Main className="justify-center">
       <section
         id={`content-${state === 'error' ? 'error' : state === 'loading' ? 'loading' : 'success'}`}
         className="my-8 flex flex-col items-center space-y-4"
       >
-        <div className={cn({ hidden: state !== 'loading' }, 'text-center')}>
-          <H1 className="animate-ping text-4xl font-extrabold">Loading...</H1>
+        <div className={cn({ hidden: state !== 'loading' }, 'aesthetic-windows-95-loader')}>
+          <div />
+          <div />
+          <div />
         </div>
 
         <div className={cn({ hidden: state !== 'error' }, 'text-center')}>
@@ -60,4 +63,4 @@ const RandomError = () => {
   );
 };
 
-export default RandomError;
+export default DonkeySausageEaterDetector;
