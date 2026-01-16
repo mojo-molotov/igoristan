@@ -1,4 +1,4 @@
-import { RefreshCw, Volume2 } from 'lucide-react';
+import { RefreshCw, Volume2, Plus } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 interface Pokemon {
@@ -34,9 +34,15 @@ interface PokemonType {
 export default function PokemonPicker() {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [inputId, setInputId] = useState<string>('');
+  const [isComplete, setIsComplete] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [addingPokemon, setAddingPokemon] = useState<boolean>(false);
 
   const fetchRandomPokemons = async (): Promise<void> => {
     setLoading(true);
+    setIsComplete(false);
+    setErrorMessage('');
     const ids: number[] = [];
 
     while (ids.length < 3) {
@@ -61,6 +67,42 @@ export default function PokemonPicker() {
   useEffect(() => {
     fetchRandomPokemons();
   }, []);
+
+  const handleAddPokemon = async (): Promise<void> => {
+    const pokemonId = parseInt(inputId);
+
+    if (isNaN(pokemonId) || pokemonId < 1 || pokemonId > 898) {
+      setErrorMessage('Please enter a valid Pokémon ID (1-898)');
+      return;
+    }
+
+    const alreadyExists = pokemons.some((p) => p.id === pokemonId);
+
+    if (alreadyExists) {
+      setErrorMessage(`Pokémon #${pokemonId} is already in your draw!`);
+      return;
+    }
+
+    setAddingPokemon(true);
+    setErrorMessage('');
+
+    try {
+      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
+      if (!response.ok) {
+        throw new Error('Pokémon not found');
+      }
+      const newPokemon: Pokemon = await response.json();
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      setPokemons([...pokemons, newPokemon]);
+      setIsComplete(true);
+      setInputId('');
+    } catch (error) {
+      console.error('Error loading pokemon:', error);
+      setErrorMessage('Failed to load Pokémon. Please try again.');
+    } finally {
+      setAddingPokemon(false);
+    }
+  };
 
   const playSound = (url: string): void => {
     const audio = new Audio(url);
@@ -172,17 +214,76 @@ export default function PokemonPicker() {
               </div>
             </div>
           ))}
-        </div>
-      </div>
 
-      <div className="mt-12 text-center">
-        <button
-          className="mx-auto flex transform items-center gap-2 rounded-full bg-white px-6 py-3 text-lg font-bold text-red-500 shadow-lg transition-all hover:scale-105 hover:shadow-xl"
-          onClick={fetchRandomPokemons}
-        >
-          <RefreshCw className="h-5 w-5" />
-          New Draw
-        </button>
+          {pokemons.length === 3 && !isComplete && (
+            <div className="flex transform items-center justify-center overflow-hidden rounded-3xl bg-white/20 shadow-2xl backdrop-blur-sm transition-all duration-300">
+              <div className="p-8 text-center">
+                <div className="mb-6">
+                  <div className="mx-auto mb-4 flex h-32 w-32 items-center justify-center rounded-full bg-white/30 backdrop-blur">
+                    <Plus className="h-16 w-16 text-white" />
+                  </div>
+                  <h3 className="mb-2 text-2xl font-bold text-white">Add 4th Pokémon</h3>
+                  <p className="text-sm text-white/90">Enter a Pokémon ID (1-898)</p>
+                </div>
+
+                <div className="mb-4">
+                  <input
+                    className="w-full rounded-xl border-2 border-white/50 bg-white/90 px-4 py-3 text-center text-xl font-bold text-gray-800 placeholder-gray-400 focus:border-white focus:outline-none disabled:opacity-50"
+                    onKeyPress={(e) => e.key === 'Enter' && !addingPokemon && handleAddPokemon()}
+                    onChange={(e) => setInputId(e.target.value)}
+                    placeholder="Enter ID..."
+                    disabled={addingPokemon}
+                    value={inputId}
+                    type="number"
+                    max="898"
+                    min="1"
+                  />
+                </div>
+
+                {errorMessage && <div className="mb-4 rounded-lg bg-red-500 px-4 py-2 text-sm font-semibold text-white">{errorMessage}</div>}
+
+                <button
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 font-bold text-red-500 shadow-lg transition-all hover:scale-105 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50"
+                  disabled={addingPokemon || !inputId}
+                  onClick={handleAddPokemon}
+                >
+                  {addingPokemon ? (
+                    <>
+                      <div className="h-5 w-5 animate-spin rounded-full border-2 border-red-500 border-t-transparent" />
+                      Loading...
+                    </>
+                  ) : (
+                    <>
+                      <Plus className="h-5 w-5" />
+                      Add Pokémon
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {isComplete && (
+          <div className="mt-12 text-center">
+            <div className="mx-auto mb-6 inline-block rounded-2xl bg-white px-8 py-4 shadow-2xl">
+              <p className="text-2xl font-bold text-green-600">✓ Draw Complete!</p>
+              <p className="text-gray-600">Your team is ready</p>
+            </div>
+          </div>
+        )}
+
+        {!isComplete && (
+          <div className="mt-12 text-center">
+            <button
+              className="mx-auto flex transform items-center gap-2 rounded-full bg-white px-6 py-3 text-lg font-bold text-red-500 shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+              onClick={fetchRandomPokemons}
+            >
+              <RefreshCw className="h-5 w-5" />
+              New Draw
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
