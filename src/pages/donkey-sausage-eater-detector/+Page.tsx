@@ -17,7 +17,11 @@ const DonkeySausageEaterDetector = () => {
   const [state, setState] = useState<'loading' | 'success' | 'error'>('loading');
   const [showSection, setShowSection] = useState(0);
 
-  const mainError = useTypewriter('A fatal exception 0xD07K3Y has occurred at 0028:C001CAFE in VXD CORSICA(01) + 00000A7E.', 15, state === 'error');
+  const mainError = useTypewriter(
+    'A fatal exception 0xD07K3Y has occurred at 0028:C01251CAF00D in VXD CORSICA_WATCHDOG(01) + 00000A7E.',
+    15,
+    state === 'error'
+  );
 
   const termination = useTypewriter('The current application will be terminated.', 15, state === 'error' && mainError.isComplete);
 
@@ -60,22 +64,35 @@ const DonkeySausageEaterDetector = () => {
 
   return (
     <Main
+      className={cn('justify-center transition-all duration-500', {
+        'm-0 min-h-screen bg-[#0000AA] p-0 text-white': state === 'error',
+        'bg-[#000000]': state === 'loading'
+      })}
       style={
         state === 'error'
           ? {
               fontFamily: 'Consolas, "Courier New", monospace',
-              overflow: 'hidden',
-              position: 'fixed',
               inset: 0
             }
           : {}
       }
-      className={cn('justify-center transition-all duration-500', state === 'error' && 'm-0 min-h-screen bg-[#0000AA] p-0 text-white')}
     >
       <section
-        className={cn('my-8 flex flex-col items-center space-y-4', state === 'error' && 'my-0 h-screen justify-center px-16 py-12')}
+        className={cn('my-8 flex flex-col items-center space-y-4', {
+          'my-0 h-screen justify-center px-16 py-12 tracking-wider': state === 'error'
+        })}
         id={`content-${state === 'error' ? 'error' : state === 'loading' ? 'loading' : 'success'}`}
       >
+        <span
+          className={cn({ hidden: state !== 'loading' }, 'aesthetic-effect-text-glitch text-center text-5xl')}
+          style={{
+            fontFamily: 'Consolas, "Courier New", monospace'
+          }}
+          data-glitch="PLEASE WAIT"
+          aria-label="Loading"
+        >
+          PLEASE WAIT
+        </span>
         <div className={cn({ hidden: state !== 'loading' }, 'aesthetic-windows-95-loader')}>
           <div />
           <div />
@@ -98,6 +115,7 @@ const DonkeySausageEaterDetector = () => {
 
             {showSection >= 1 && (
               <div className="animate-in fade-in my-6 space-y-2 border-l-4 border-white pl-4 duration-300">
+                <p className="font-mono text-sm">* CORSICAN_WATCHDOG_TIMEOUT</p>
                 <p className="font-mono text-sm">* DONKEY_SAUSAGE_EATER_DETECTED</p>
                 <p className="font-mono text-sm">* CORSICAN_INTRUSION_VIOLATION</p>
                 <p className="font-mono text-sm">* GO_BACK_TO_YOUR_COUNTRY</p>
@@ -108,7 +126,7 @@ const DonkeySausageEaterDetector = () => {
             {showSection >= 2 && (
               <div className="animate-in fade-in mt-6 space-y-1 bg-[#000080] p-4 font-mono text-xs duration-300">
                 <p>*** STOP: 0x0000001A (0x8BADF00D)</p>
-                <p>*** CORSICA.SYS - Address C01251CAF00D base at C0000000, DateStamp 0000C012E</p>
+                <p>*** CORSICA_WATCHDOG.SYS - Address C01251CAF00D base at C0000000, DateStamp 0000C012E</p>
                 <p className="mt-2 opacity-75">Beginning dump of physical memory</p>
                 <p className="opacity-75">Physical memory dump complete.</p>
                 <p className="mt-2 opacity-75">Go back to your country for support.</p>
@@ -116,8 +134,9 @@ const DonkeySausageEaterDetector = () => {
             )}
 
             {showSection >= 3 && (
-              <div className="animate-in fade-in mt-6 space-y-2 text-sm duration-300">
-                <p>* Quit this website immediately.</p>
+              <div className="animate-in fade-in mt-6 space-y-2 text-sm tracking-[0.3em] duration-300">
+                <p className="uppercase">* You donkey sausage eater</p>
+                <p className="uppercase">* Quit this website immediately</p>
               </div>
             )}
 
@@ -126,13 +145,13 @@ const DonkeySausageEaterDetector = () => {
                 <ErrorCode className="text-white">
                   <span className="font-mono text-2xl">0xC012E_5AUC1550N</span>
                 </ErrorCode>
-                <span className="font-mono text-xs opacity-75">KERNEL_SECURITY_CHECK_FAILURE</span>
+                <span className="font-mono text-xs opacity-75">WATCHDOG_SECURITY_CHECK_FAILURE</span>
               </div>
             )}
           </div>
 
           {showSection >= 5 && (
-            <div className="mt-8 animate-pulse">
+            <div className="mt-8 animate-pulse tracking-widest uppercase">
               <BackToSicily />
             </div>
           )}
