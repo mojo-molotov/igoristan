@@ -37,7 +37,7 @@ const FakeUploadForm = () => {
 
     const timer = setTimeout(() => {
       setSuccessMessage('');
-    }, 5000);
+    }, 5e3);
 
     return () => clearTimeout(timer);
   }, [successMessage]);
