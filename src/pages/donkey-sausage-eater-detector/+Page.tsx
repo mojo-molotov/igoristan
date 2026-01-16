@@ -30,7 +30,8 @@ const DonkeySausageEaterDetector = () => {
     const timeoutId = setTimeout(
       () => {
         document.title = formatPageTitle({
-          pageTitle: hasError ? ERROR_PAGE_TITLE : PAGE_TITLE
+          pageTitle: hasError ? ERROR_PAGE_TITLE : PAGE_TITLE,
+          errorCode: hasError ? '500' : undefined
         });
         setState(hasError ? 'error' : 'success');
       },
@@ -64,18 +65,10 @@ const DonkeySausageEaterDetector = () => {
 
   return (
     <Main
-      className={cn('justify-center transition-all duration-500', {
-        'm-0 min-h-screen bg-[#0000AA] p-0 text-white': state === 'error',
+      className={cn('justify-center font-mono transition-all duration-500', {
+        'inset-0 m-0 min-h-screen bg-[#0000AA] p-0 text-white': state === 'error',
         'bg-[#000000]': state === 'loading'
       })}
-      style={
-        state === 'error'
-          ? {
-              fontFamily: 'Consolas, "Courier New", monospace',
-              inset: 0
-            }
-          : {}
-      }
     >
       <section
         className={cn('my-8 flex flex-col items-center space-y-4', {
@@ -84,10 +77,7 @@ const DonkeySausageEaterDetector = () => {
         id={`content-${state === 'error' ? 'error' : state === 'loading' ? 'loading' : 'success'}`}
       >
         <span
-          className={cn({ hidden: state !== 'loading' }, 'aesthetic-effect-text-glitch text-center text-5xl')}
-          style={{
-            fontFamily: 'Consolas, "Courier New", monospace'
-          }}
+          className={cn({ hidden: state !== 'loading' }, 'aesthetic-effect-text-glitch text-center font-mono text-5xl')}
           data-glitch="PLEASE WAIT"
           aria-label="Loading"
         >
@@ -98,6 +88,13 @@ const DonkeySausageEaterDetector = () => {
           <div />
           <div />
         </div>
+
+        {state === 'loading' && (
+          <div className="fixed right-0 bottom-0 left-0 border-t-2 border-gray-700 bg-black py-4 text-center">
+            <p className="font-mono text-sm tracking-widest text-gray-400">CORSICAN SYSTEMS™</p>
+            <p className="mt-1 font-mono text-xs text-gray-600">Starting services...</p>
+          </div>
+        )}
 
         <div className={cn({ hidden: state !== 'error' }, 'w-full max-w-4xl space-y-6')}>
           <div className="space-y-4 border-t-4 border-white pt-6">

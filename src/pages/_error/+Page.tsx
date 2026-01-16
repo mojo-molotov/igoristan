@@ -26,7 +26,7 @@ export default function Page() {
   });
 
   useEffect(() => {
-    document.title = show404 ? formatPageTitle({ pageTitle: '404' }) : formatPageTitle({ pageTitle: '500' });
+    document.title = show404 ? formatPageTitle({ errorCode: '404' }) : formatPageTitle({ errorCode: '500' });
     setIsMounted(true);
   }, [show404]);
 
