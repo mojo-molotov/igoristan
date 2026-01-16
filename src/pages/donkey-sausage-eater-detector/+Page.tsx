@@ -9,6 +9,7 @@ import { randint } from '@/lib/randint';
 import Main from '@/fragments/Main';
 import { cn } from '@/lib/utils';
 
+import bsodSoundUrl from '../../../assets/sounds/horrible-freeze-sound.mp3';
 import welcomeGifUrl from '../../../assets/gifs/welcome.gif';
 import { ERROR_PAGE_TITLE, PAGE_TITLE } from './constants';
 
@@ -33,6 +34,14 @@ const DonkeySausageEaterDetector = () => {
     );
     return () => clearTimeout(timeoutId);
   }, []);
+
+  useEffect(() => {
+    if (state !== 'error') return;
+    const audio = new Audio(bsodSoundUrl);
+    audio.volume = 1;
+    audio.loop = true;
+    audio.play().catch(() => {});
+  }, [state]);
 
   useEffect(() => {
     if (state !== 'error') return;
@@ -98,8 +107,8 @@ const DonkeySausageEaterDetector = () => {
 
             {showSection >= 2 && (
               <div className="animate-in fade-in mt-6 space-y-1 bg-[#000080] p-4 font-mono text-xs duration-300">
-                <p>*** STOP: 0x0000001A (0xC0DE1337, 0xDEADBEEF, 0xCAFEBABE, 0x8BADF00D)</p>
-                <p>*** CORSICA.SYS - Address C001CAFE base at C0000000, DateStamp 0000C012E</p>
+                <p>*** STOP: 0x0000001A (0x8BADF00D)</p>
+                <p>*** CORSICA.SYS - Address C01251CAF00D base at C0000000, DateStamp 0000C012E</p>
                 <p className="mt-2 opacity-75">Beginning dump of physical memory</p>
                 <p className="opacity-75">Physical memory dump complete.</p>
                 <p className="mt-2 opacity-75">Go back to your country for support.</p>
