@@ -8,6 +8,7 @@ import welcomeGifUrl from '../../../assets/gifs/welcome.gif';
 const ApprovedVisitorWelcomePage = () => {
   const [step, setStep] = useState(0);
   const [corsitudeLevel] = useState(Math.floor(Math.random() * 15) + 85);
+  const [currentYear] = useState(new Date().getFullYear());
 
   const [daysSinceInvasion] = useState(() => {
     const invasionDate = Date.UTC(1942, 10, 11);
@@ -108,7 +109,7 @@ const ApprovedVisitorWelcomePage = () => {
             </div>
 
             <div className="border-t border-green-400/30 pt-4 text-center text-xs opacity-50">
-              <p>CORSICAN DEFENSE MATRIX © {new Date().getFullYear()}</p>
+              <p>CORSICAN DEFENSE MATRIX © {currentYear}</p>
               <p>Protecting Corsica from donkey sausage eaters</p>
             </div>
           </div>
