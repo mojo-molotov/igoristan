@@ -44,11 +44,11 @@ const DisapprovedVisitorGetOutPage = () => {
         {showSection >= 1 && (
           <div className="my-6 flex gap-4 duration-300">
             <div className="flex-1 space-y-2 border-l-4 border-white pl-4">
-              <p className="font-mono text-sm">* CORSICAN_WATCHDOG_TIMEOUT</p>
-              <p className="font-mono text-sm">* DONKEY_SAUSAGE_EATER_DETECTED</p>
-              <p className="font-mono text-sm">* CORSICAN_INTRUSION_VIOLATION</p>
-              <p className="font-mono text-sm">* GO_BACK_TO_YOUR_COUNTRY</p>
-              <p className="font-mono text-sm">* NAPOLEON_DISAPPROVES</p>
+              <p className="font-mono text-sm uppercase">* Corsican_watchdog_timeout</p>
+              <p className="font-mono text-sm uppercase">* Donkey_sausage_eater_detected</p>
+              <p className="font-mono text-sm uppercase">* Corsican_intrusion_violation</p>
+              <p className="font-mono text-sm uppercase">* Go_back_to_your_country</p>
+              <p className="font-mono text-sm uppercase">* Napoleon_disapproves</p>
             </div>
             <div
               className="relative top-7 hidden h-32 w-32 bg-contain bg-bottom bg-no-repeat sm:block"
@@ -60,8 +60,12 @@ const DisapprovedVisitorGetOutPage = () => {
 
         {showSection >= 2 && (
           <div className="mt-6 space-y-1 bg-[#000080] p-4 font-mono text-xs duration-300">
-            <p>*** STOP: 0x0000001A (0x8BADF00D)</p>
-            <p>*** CORSICA_WATCHDOG.SYS - Address C01251CAF00D base at C0000000, DateStamp 0000C012E</p>
+            <p>
+              *** <span className="uppercase">Stop</span>: 0x0000001A (0x8BADF00D)
+            </p>
+            <p>
+              *** <span className="uppercase">Corsica_watchdog.sys</span> - Address C01251CAF00D base at C0000000, DateStamp 0000C012E
+            </p>
             <p className="mt-2 opacity-75">Beginning dump of physical memory</p>
             <p className="opacity-75">Physical memory dump complete.</p>
             <p className="mt-2 opacity-75">Go back to your country for support.</p>
