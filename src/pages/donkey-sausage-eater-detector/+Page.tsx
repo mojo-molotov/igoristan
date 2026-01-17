@@ -10,6 +10,7 @@ import { cn } from '@/lib/utils';
 
 import accessGrantedSoundUrl from '../../../assets/sounds/access-granted.ogg';
 import bsodSoundUrl from '../../../assets/sounds/horrible-freeze-sound.ogg';
+import napoleonShadowUrl from '../../../assets/images/napoleon-shadow.png';
 import ApprovedVisitorWelcomePage from './ApprovedVisitorWelcomePage';
 import { ERROR_PAGE_TITLE, PAGE_TITLE } from './constants';
 
@@ -130,12 +131,19 @@ const DonkeySausageEaterDetector = () => {
             )}
 
             {showSection >= 1 && (
-              <div className="my-6 space-y-2 border-l-4 border-white pl-4 duration-300">
-                <p className="font-mono text-sm">* CORSICAN_WATCHDOG_TIMEOUT</p>
-                <p className="font-mono text-sm">* DONKEY_SAUSAGE_EATER_DETECTED</p>
-                <p className="font-mono text-sm">* CORSICAN_INTRUSION_VIOLATION</p>
-                <p className="font-mono text-sm">* GO_BACK_TO_YOUR_COUNTRY</p>
-                <p className="font-mono text-sm">* NAPOLEON_DISAPPROVES</p>
+              <div className="my-6 flex gap-4 duration-300">
+                <div className="flex-1 space-y-2 border-l-4 border-white pl-4">
+                  <p className="font-mono text-sm">* CORSICAN_WATCHDOG_TIMEOUT</p>
+                  <p className="font-mono text-sm">* DONKEY_SAUSAGE_EATER_DETECTED</p>
+                  <p className="font-mono text-sm">* CORSICAN_INTRUSION_VIOLATION</p>
+                  <p className="font-mono text-sm">* GO_BACK_TO_YOUR_COUNTRY</p>
+                  <p className="font-mono text-sm">* NAPOLEON_DISAPPROVES</p>
+                </div>
+                <div
+                  className="relative top-7 hidden h-32 w-32 bg-contain bg-bottom bg-no-repeat sm:block"
+                  style={{ backgroundImage: `url(${napoleonShadowUrl})` }}
+                  aria-hidden="true"
+                />
               </div>
             )}
 
