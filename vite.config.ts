@@ -1,11 +1,17 @@
 /* eslint-disable import-x/no-extraneous-dependencies */
 import { visualizer } from 'rollup-plugin-visualizer';
 import viteCompression from 'vite-plugin-compression';
+import sitemap from '@qalisa/vike-plugin-sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
+import { minimatch } from 'minimatch';
 import { defineConfig } from 'vite';
 import vike from 'vike/plugin';
 import path from 'path';
+
+const ORIGIN = 'https://mojo-molotov.github.io';
+const BASE = '/igoristan';
+const SITEMAP_EXCLUSIONS = ['**/igoristan/dashboard/**'] as const;
 
 export default defineConfig({
   plugins: [
@@ -20,7 +26,12 @@ export default defineConfig({
       filename: 'stats-sunburst.html',
       template: 'treemap'
     }),
-    vike()
+    vike(),
+    sitemap({
+      sitemapGenerator: (entries) => entries.filter((e) => !minimatch(new URL(e.loc).pathname, SITEMAP_EXCLUSIONS[0])),
+      baseUrl: ORIGIN + BASE,
+      pagesDir: 'src/pages'
+    })
   ],
   build: {
     terserOptions: {
@@ -36,5 +47,5 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src')
     }
   },
-  base: '/igoristan/'
+  base: BASE
 });
