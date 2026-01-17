@@ -31,30 +31,26 @@ const UploadPreview: FunctionComponent<PreviewProps> = ({
   const injectDragAndDrop = (embeddedDropzone !== undefined && !embeddedDropzone) || isSingleton ? {} : getRootProps();
 
   const [animatedIndex, setAnimatedIndex] = useState<number | null>(null);
-  const [previousIndex, setPreviousIndex] = useState<number | null>(null);
 
-  const { restartTimer } = useIntervalTimer({
+  useIntervalTimer({
     onExpire: () => {
       if (isSingleton) return;
 
       if (blobs.length === 0) {
         setAnimatedIndex(null);
-        setPreviousIndex(null);
-        restartTimer();
         return;
       }
 
-      let randomIndex: number;
-      do {
-        randomIndex = randint(0, blobs.length - 1);
-      } while (blobs.length > 1 && randomIndex === previousIndex);
+      setAnimatedIndex((prev) => {
+        let newIndex: number;
+        do {
+          newIndex = randint(0, blobs.length - 1);
+        } while (blobs.length > 1 && newIndex === prev);
 
-      setAnimatedIndex(randomIndex);
-      setPreviousIndex(randomIndex);
-
-      restartTimer();
+        return newIndex;
+      });
     },
-    delay: 5000
+    delay: 5e3
   });
 
   return (

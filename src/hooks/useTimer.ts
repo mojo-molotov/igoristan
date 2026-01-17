@@ -7,15 +7,20 @@ interface UseIntervalTimerProps {
 
 export function useIntervalTimer({ onExpire, delay }: UseIntervalTimerProps) {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const onExpireRef = useRef(onExpire);
+
+  useEffect(() => {
+    onExpireRef.current = onExpire;
+  }, [onExpire]);
 
   const startTimer = useCallback(() => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
 
     timeoutRef.current = setTimeout(() => {
-      onExpire();
+      onExpireRef.current();
       startTimer();
     }, delay);
-  }, [onExpire, delay]);
+  }, [delay]);
 
   useEffect(() => {
     startTimer();

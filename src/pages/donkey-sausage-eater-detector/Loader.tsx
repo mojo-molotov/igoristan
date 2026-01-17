@@ -10,10 +10,10 @@ const Loader = () => {
         <div />
       </div>
 
-      <div className="fixed right-0 bottom-0 left-0 border-t-2 border-gray-700 bg-black py-4 text-center">
+      <footer className="fixed right-0 bottom-0 left-0 border-t-2 border-gray-700 bg-black py-4 text-center">
         <p className="font-mono text-sm tracking-widest text-gray-400">CORSICAN SYSTEMS™</p>
         <p className="mt-1 font-mono text-xs text-gray-600">Starting services...</p>
-      </div>
+      </footer>
     </>
   );
 };

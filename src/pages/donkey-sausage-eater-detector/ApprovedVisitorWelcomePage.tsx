@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import RandomBibleVerse from '@/components/RandomBibleVerse';
 import useTypewriter from '@/hooks/useTypewriter';
 import BackToHome from '@/components/BackToHome';
 
@@ -112,10 +113,12 @@ const ApprovedVisitorWelcomePage = () => {
               </div>
             </div>
 
-            <div className="border-t border-green-400/30 pt-4 text-center text-xs opacity-50">
+            <RandomBibleVerse />
+
+            <footer className="border-t border-green-400/30 pt-4 text-center text-xs opacity-50">
               <p>CORSICAN DEFENSE MATRIX © {currentYear}</p>
               <p>Protecting Corsica from donkey sausage eaters</p>
-            </div>
+            </footer>
           </div>
         )}
       </div>
