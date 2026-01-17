@@ -61,11 +61,12 @@ const Upload = () => {
           filter: 'brightness(0.4)',
           backgroundColor: '#000'
         }}
-        className="fixed inset-0 -z-10 bg-cover bg-center transition-all duration-2000"
+        className="fixed inset-0 -z-10 bg-cover bg-center"
       />
       <Main className="relative flex flex-col items-center">
         <div className="absolute top-4 right-4 text-sm text-white/80 italic select-none max-xl:hidden">{BRAND}'s Blessed Uploader™</div>
         <H1 className="text-center font-mono tracking-widest text-white uppercase drop-shadow-2xl text-shadow-lg max-sm:text-lg">Upload images!</H1>
+
         <ImagesDropzoneProvider>
           <FakeUploadForm />
         </ImagesDropzoneProvider>
