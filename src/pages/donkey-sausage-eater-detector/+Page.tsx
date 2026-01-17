@@ -161,7 +161,7 @@ const DonkeySausageEaterDetector = () => {
                 <ErrorCode className="text-white">
                   <span className="font-mono text-2xl">0xC012E_5AUC1550N</span>
                 </ErrorCode>
-                <span className="font-mono text-xs opacity-75">WATCHDOG_SECURITY_CHECK_FAILURE</span>
+                <span className="font-mono text-xs opacity-75 max-sm:hidden">WATCHDOG_SECURITY_CHECK_FAILURE</span>
               </div>
             )}
           </div>
