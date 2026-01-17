@@ -35,7 +35,7 @@ const DonkeySausageEaterDetector = () => {
         });
         setState(hasError ? 'error' : 'success');
       },
-      randint(1, 5) * 250
+      randint(1, 5) * 250 + 450
     );
     return () => clearTimeout(timeoutId);
   }, []);
