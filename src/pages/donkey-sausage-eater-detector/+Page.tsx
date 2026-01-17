@@ -8,7 +8,7 @@ import { randint } from '@/lib/randint';
 import Main from '@/fragments/Main';
 import { cn } from '@/lib/utils';
 
-import accessGrantedMusicUrl from '../../../assets/sounds/access-granted-song.ogg';
+import accessGrantedSoundUrl from '../../../assets/sounds/access-granted.ogg';
 import bsodSoundUrl from '../../../assets/sounds/horrible-freeze-sound.ogg';
 import ApprovedVisitorWelcomePage from './ApprovedVisitorWelcomePage';
 import { ERROR_PAGE_TITLE, PAGE_TITLE } from './constants';
@@ -55,9 +55,8 @@ const DonkeySausageEaterDetector = () => {
 
   useEffect(() => {
     if (state !== 'success') return;
-    const audio = new Audio(accessGrantedMusicUrl);
+    const audio = new Audio(accessGrantedSoundUrl);
     audio.volume = 1;
-    audio.loop = true;
     audio.play().catch(() => {});
 
     return () => {

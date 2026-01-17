@@ -99,7 +99,7 @@ const ApprovedVisitorWelcomePage = () => {
             <div className="space-y-3 border border-green-400 bg-green-900/20 p-6 text-center">
               <p className="text-lg font-bold sm:hidden">ACCESS GRANTED</p>
               <p className="text-lg font-bold max-sm:hidden">╔═══ ACCESS GRANTED ═══╗</p>
-              <p className="text-sm opacity-90">Welcome, non-Sicilian visitor.</p>
+              <p className="text-sm opacity-90">Welcome, non-Sicilian visitor!</p>
 
               <img className="mx-auto h-32 w-fit border-4 border-purple-500 object-cover shadow-2xl" src={welcomeGifUrl} alt="Welcome" />
 
