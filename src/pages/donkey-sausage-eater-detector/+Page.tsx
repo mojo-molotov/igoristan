@@ -66,7 +66,7 @@ const DonkeySausageEaterDetector = () => {
     >
       <section
         className={cn('my-8 flex flex-col items-center space-y-4', {
-          'my-0 min-h-screen justify-center px-16 py-12 tracking-wider': state === 'error' || state === 'success'
+          'my-0 min-h-screen justify-center px-16 py-12 tracking-wider max-sm:px-2 max-sm:py-2': state === 'error' || state === 'success'
         })}
         id={`content-${state === 'error' ? 'error' : state === 'loading' ? 'loading' : 'success'}`}
       >

@@ -59,7 +59,7 @@ const ApprovedVisitorWelcomePage = () => {
             {verification.isComplete && step >= 3 && (
               <div className="space-y-2 pl-4 duration-300">
                 <p className="text-sm">
-                  ► Origin: <span className="text-yellow-400">NOT DETECTED IN SICILY</span>
+                  ► Origin: <span className="text-yellow-400">NOT IN SICILY</span>
                 </p>
                 <p className="text-sm">
                   ► Donkey sausage consumption: <span className="text-yellow-400">0%</span>
