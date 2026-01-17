@@ -3,14 +3,14 @@ import { useEffect, useState } from 'react';
 import BackToSicily from '@/components/BackToSicily';
 import { formatPageTitle } from '@/lib/formatters';
 import useTypewriter from '@/hooks/useTypewriter';
-import BackToHome from '@/components/BackToHome';
 import ErrorCode from '@/components/ErrorCode';
 import { randint } from '@/lib/randint';
 import Main from '@/fragments/Main';
 import { cn } from '@/lib/utils';
 
-import bsodSoundUrl from '../../../assets/sounds/horrible-freeze-sound.mp3';
-import welcomeGifUrl from '../../../assets/gifs/welcome.gif';
+import accessGrantedMusicUrl from '../../../assets/sounds/access-granted-song.ogg';
+import bsodSoundUrl from '../../../assets/sounds/horrible-freeze-sound.ogg';
+import ApprovedVisitorWelcomePage from './ApprovedVisitorWelcomePage';
 import { ERROR_PAGE_TITLE, PAGE_TITLE } from './constants';
 
 const DonkeySausageEaterDetector = () => {
@@ -46,6 +46,24 @@ const DonkeySausageEaterDetector = () => {
     audio.volume = 1;
     audio.loop = true;
     audio.play().catch(() => {});
+
+    return () => {
+      audio.pause();
+      audio.currentTime = 0;
+    };
+  }, [state]);
+
+  useEffect(() => {
+    if (state !== 'success') return;
+    const audio = new Audio(accessGrantedMusicUrl);
+    audio.volume = 1;
+    audio.loop = true;
+    audio.play().catch(() => {});
+
+    return () => {
+      audio.pause();
+      audio.currentTime = 0;
+    };
   }, [state]);
 
   useEffect(() => {
@@ -66,13 +84,15 @@ const DonkeySausageEaterDetector = () => {
   return (
     <Main
       className={cn('justify-center font-mono transition-all duration-500', {
-        'inset-0 m-0 min-h-screen bg-[#0000AA] p-0 text-white': state === 'error',
-        'bg-[#000000]': state === 'loading'
+        'inset-0 m-0 min-h-screen p-0 text-white': state === 'error' || state === 'success',
+        'bg-[#000000]': state === 'loading',
+        'bg-[#8b00aa]': state === 'success',
+        'bg-[#0000AA]': state === 'error'
       })}
     >
       <section
         className={cn('my-8 flex flex-col items-center space-y-4', {
-          'my-0 h-screen justify-center px-16 py-12 tracking-wider': state === 'error'
+          'my-0 min-h-screen justify-center px-16 py-12 tracking-wider': state === 'error' || state === 'success'
         })}
         id={`content-${state === 'error' ? 'error' : state === 'loading' ? 'loading' : 'success'}`}
       >
@@ -155,15 +175,14 @@ const DonkeySausageEaterDetector = () => {
 
           {showSection >= 6 && (
             <div className="animate-in fade-in mt-12 border-t border-white pt-4 text-center text-xs opacity-60 duration-500">
-              <p>CORSICA™ Protection System - Powered by Napoleon Bonapart Imperial Firewall</p>
+              <p>CORSICA™ Protection System - Powered by Napoleon Bonaparte Imperial Firewall</p>
               <p className="mt-1">© Corsica Empire. All rights reserved to Corsicans only.</p>
             </div>
           )}
         </div>
 
-        <div className={cn({ hidden: state !== 'success' }, 'text-center')}>
-          <img className="h-64 w-fit border-4 border-purple-500 object-cover shadow-2xl" src={welcomeGifUrl} alt="Welcome" />
-          <BackToHome />
+        <div className={cn({ hidden: state !== 'success' }, 'w-full')}>
+          <ApprovedVisitorWelcomePage />
         </div>
       </section>
     </Main>
