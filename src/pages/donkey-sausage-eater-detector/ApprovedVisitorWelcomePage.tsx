@@ -56,7 +56,7 @@ const ApprovedVisitorWelcomePage = () => {
             )}
 
             {verification.isComplete && step >= 3 && (
-              <div className="animate-in fade-in space-y-2 pl-4 duration-300">
+              <div className="space-y-2 pl-4 duration-300">
                 <p className="text-sm">
                   ► Origin: <span className="text-yellow-400">NOT DETECTED IN SICILY</span>
                 </p>
@@ -78,7 +78,7 @@ const ApprovedVisitorWelcomePage = () => {
         )}
 
         {step >= 4 && validated.isComplete && (
-          <div className="animate-in fade-in space-y-6 border-t-2 border-green-400 pt-6 duration-500">
+          <div className="animate-fade-in space-y-6 border-t-2 border-green-400 pt-6 duration-500">
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <div className="border border-green-400 bg-green-900/30 p-4">
                 <p className="text-xs uppercase opacity-70">Corsitude Level</p>

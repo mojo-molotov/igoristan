@@ -131,7 +131,7 @@ const DonkeySausageEaterDetector = () => {
             )}
 
             {showSection >= 1 && (
-              <div className="animate-in fade-in my-6 space-y-2 border-l-4 border-white pl-4 duration-300">
+              <div className="my-6 space-y-2 border-l-4 border-white pl-4 duration-300">
                 <p className="font-mono text-sm">* CORSICAN_WATCHDOG_TIMEOUT</p>
                 <p className="font-mono text-sm">* DONKEY_SAUSAGE_EATER_DETECTED</p>
                 <p className="font-mono text-sm">* CORSICAN_INTRUSION_VIOLATION</p>
@@ -141,7 +141,7 @@ const DonkeySausageEaterDetector = () => {
             )}
 
             {showSection >= 2 && (
-              <div className="animate-in fade-in mt-6 space-y-1 bg-[#000080] p-4 font-mono text-xs duration-300">
+              <div className="mt-6 space-y-1 bg-[#000080] p-4 font-mono text-xs duration-300">
                 <p>*** STOP: 0x0000001A (0x8BADF00D)</p>
                 <p>*** CORSICA_WATCHDOG.SYS - Address C01251CAF00D base at C0000000, DateStamp 0000C012E</p>
                 <p className="mt-2 opacity-75">Beginning dump of physical memory</p>
@@ -151,14 +151,14 @@ const DonkeySausageEaterDetector = () => {
             )}
 
             {showSection >= 3 && (
-              <div className="animate-in fade-in mt-6 space-y-2 text-sm tracking-[0.3em] duration-300">
+              <div className="mt-6 space-y-2 text-sm tracking-[0.3em] duration-300">
                 <p className="uppercase">* You donkey sausage eater</p>
                 <p className="uppercase">* Quit this website immediately</p>
               </div>
             )}
 
             {showSection >= 4 && (
-              <div className="animate-in fade-in mt-8 flex items-center justify-between border-t border-white pt-4 duration-300">
+              <div className="mt-8 flex items-center justify-between border-t border-white pt-4 duration-300">
                 <ErrorCode className="text-white">
                   <span className="font-mono text-2xl">0xC012E_5AUC1550N</span>
                 </ErrorCode>
@@ -174,7 +174,7 @@ const DonkeySausageEaterDetector = () => {
           )}
 
           {showSection >= 6 && (
-            <div className="animate-in fade-in mt-12 border-t border-white pt-4 text-center text-xs opacity-60 duration-500">
+            <div className="mt-12 animate-fade-in border-t border-white pt-4 text-center text-xs opacity-60 duration-500">
               <p>CORSICA™ Protection System - Powered by Napoleon Bonaparte Imperial Firewall</p>
               <p className="mt-1">© Corsica Empire. All rights reserved to Corsicans only.</p>
             </div>
