@@ -8,9 +8,11 @@ import shuffle from '@/lib/shuffle';
 import BRAND from '@/config/brand';
 import H1 from '@/fragments/H1';
 
+import casgiuDiCapraImgUrl from '../../../assets/images/backgrounds/casgiu-di-capra.webp';
 import matriochkaImgUrl from '../../../assets/images/backgrounds/matriochka.webp';
 import figatelluImgUrl from '../../../assets/images/backgrounds/figatellu.webp';
 import stBasilsImgUrl from '../../../assets/images/backgrounds/st-basils.webp';
+import brocciuImgUrl from '../../../assets/images/backgrounds/brocciu.webp';
 import bastiaImgUrl from '../../../assets/images/backgrounds/bastia.webp';
 import mariasImgUrl from '../../../assets/images/backgrounds/marias.webp';
 import donkeyImgUrl from '../../../assets/images/backgrounds/donkey.webp';
@@ -24,9 +26,11 @@ const backgrounds = [
   stBasilsImgUrl,
   mariasImgUrl,
   templeImgUrl,
+  brocciuImgUrl,
   bastiaImgUrl,
   donkeyImgUrl,
   jesusImgUrl,
+  casgiuDiCapraImgUrl,
   matriochkaImgUrl,
   figatelluImgUrl,
   mariaImgUrl,
