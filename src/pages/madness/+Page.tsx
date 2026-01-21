@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 
 import { randint } from '@/lib/randint';
 
+import Cors from './stories/Cors';
+
 const [MIN, MAX] = [1, 5] as const;
 
 const getRandomNumber = () => randint(MIN, MAX) as NRange;
@@ -25,13 +27,15 @@ const RandomPage = () => {
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-linear-to-br from-blue-50 to-indigo-100">
-      <section className="my-8 flex flex-col items-center space-y-4">
-        <div className={state !== 'computed' ? 'hidden' : 'text-center'}>
-          <div className="animate-fade-in rounded-2xl border-4 border-indigo-500 bg-white p-12 shadow-2xl">
-            <h1 className="mb-4 text-9xl font-extrabold text-indigo-600">{randomNumber}</h1>
+      {(randomNumber === 1 && <Cors />) || (
+        <section className="my-8 flex flex-col items-center space-y-4">
+          <div className={state !== 'computed' ? 'hidden' : 'text-center'}>
+            <div className="animate-fade-in rounded-2xl border-4 border-indigo-500 bg-white p-12 shadow-2xl">
+              <h1 className="mb-4 text-9xl font-extrabold text-indigo-600">{randomNumber}</h1>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </main>
   );
 };
