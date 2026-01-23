@@ -7,6 +7,7 @@ const __ROOT = '/igoristan/';
 const DASHBOARD = 'dashboard';
 
 const __ROUTES = {
+  DONKEY_SAUSAGE_DETECTOR: 'donkey-sausage-eater-detector',
   DASHBOARD_NESTED: `${DASHBOARD}/nested`,
   RANDOM_ERROR: 'random-error',
   DASHBOARD,

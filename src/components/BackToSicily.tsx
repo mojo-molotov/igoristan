@@ -1,8 +1,11 @@
+import type { FunctionComponent } from 'react';
+
 import { useEffect, useState } from 'react';
 
 import type { UnionToTuple } from '@/types/utils';
 
 import { pickRandom } from '@/lib/pickRandom';
+import { cn } from '@/lib/utils';
 
 import Link from './Link';
 
@@ -25,7 +28,11 @@ const SICILY_CONTENT = {
 type SicilyWebsite = UnionToTuple<keyof typeof SICILY_CONTENT>;
 const SICILY_WEBSITES = Object.freeze(Object.keys(SICILY_CONTENT)) as SicilyWebsite;
 
-const BackToSicily = () => {
+interface BackToSicilyProps {
+  className?: string;
+}
+
+const BackToSicily: FunctionComponent<BackToSicilyProps> = ({ className }) => {
   const [sicilyWebsite, setSicilyWebsite] = useState<string>(SICILY_WEBSITES[0]);
   const [goAwayMsg, setGoAwayMsg] = useState<string>(SICILY_CONTENT[SICILY_WEBSITES[0]][0]);
 
@@ -38,7 +45,7 @@ const BackToSicily = () => {
   }, []);
 
   return (
-    <Link className="mx-auto w-fit animate-fade-in text-xl no-underline" href={sicilyWebsite}>
+    <Link className={cn('mx-auto w-fit animate-fade-in text-xl no-underline', className)} href={sicilyWebsite}>
       {goAwayMsg}
     </Link>
   );

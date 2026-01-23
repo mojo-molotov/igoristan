@@ -1,34 +1,12 @@
-import { useEffect, useRef } from 'react';
-import throttle from 'throttleit';
+import { useAutoPlayAudio } from '@/hooks/useAutoplayAudio';
 
 import aveMaria8BitsSongUrl from '../../../assets/sounds/ave-maria-song-8b.ogg';
 import candleGifUrl from '../../../assets/gifs/candle.gif';
 
 const Text = () => {
-  const audioRef = useRef<HTMLAudioElement>(null);
-
-  useEffect(() => {
-    const youMustListenAveMariaHandler = () => {
-      if (!audioRef.current) return;
-      audioRef.current.volume = 1;
-      audioRef.current.muted = false;
-
-      if (!audioRef.current.paused && !audioRef.current.ended) return;
-
-      audioRef.current.currentTime = 0;
-      audioRef.current.play().catch(() => {});
-    };
-
-    const throttledYouMustListenAveMariaHandler = throttle(youMustListenAveMariaHandler, 500);
-
-    document.addEventListener('click', youMustListenAveMariaHandler);
-    document.addEventListener('scroll', throttledYouMustListenAveMariaHandler);
-
-    return () => {
-      document.removeEventListener('click', youMustListenAveMariaHandler);
-      document.removeEventListener('scroll', throttledYouMustListenAveMariaHandler);
-    };
-  }, []);
+  const audioRef = useAutoPlayAudio({
+    volume: 1
+  });
 
   return (
     <div className="max-w-8xl mx-auto min-h-screen bg-black/40 px-6 py-12 font-serif font-black text-amber-50">
