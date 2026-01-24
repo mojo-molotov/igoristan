@@ -82,19 +82,22 @@ const ThisIsBastia = () => {
           </Button>
         </section>
       </div>
-      <footer className="w-full border-t-4 border-red-600 bg-black/80 py-8">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <p className="mb-2 text-xl text-amber-300/90 uppercase italic">This is Bastia!</p>
-          <p className="text-lg text-amber-400/70">Protecting Corsican donkeys since ancient times • Kicking Sicilians into the sea since forever</p>
-          <p className="mt-4 text-lg text-amber-500/60">
-            🐴 Donkeys are friends, not food
-            <br />
-            🥾 Sicily not welcome
-          </p>
-        </div>
-      </footer>
     </div>
   );
 };
+
+export const ThisIsBastiaFooter = () => (
+  <footer className="w-full border-t-4 border-red-600 bg-black/95 py-8">
+    <div className="mx-auto max-w-4xl px-6 text-center">
+      <p className="mb-2 text-xl text-amber-300/90 uppercase italic">This is Bastia!</p>
+      <p className="text-lg text-amber-400/70">Protecting Corsican donkeys since ancient times • Kicking Sicilians into the sea since forever</p>
+      <p className="mt-4 text-lg text-amber-500/60">
+        🐴 Donkeys are friends, not food
+        <br />
+        🥾 Sicily not welcome
+      </p>
+    </div>
+  </footer>
+);
 
 export default ThisIsBastia;

@@ -34,7 +34,7 @@ const ApprovedVisitorWelcomePage = () => {
 
   return (
     <div className="w-full border-4 border-green-400 bg-black p-8 font-mono text-green-400 shadow-2xl">
-      <div className="space-y-4">
+      <main className="space-y-4">
         <div className="border-b-2 border-green-400 pb-4">
           <p className="text-2xl font-bold tracking-wider">
             {welcome.displayedText}
@@ -114,14 +114,14 @@ const ApprovedVisitorWelcomePage = () => {
             </div>
 
             <RandomBibleVerse />
-
-            <footer className="border-t border-green-400/30 pt-4 text-center text-xs opacity-50">
-              <p>CORSICAN DEFENSE MATRIX © {currentYear}</p>
-              <p>Protecting Corsica from donkey sausage eaters</p>
-            </footer>
           </div>
         )}
-      </div>
+      </main>
+
+      <footer className="border-t border-green-400/30 pt-4 text-center text-xs opacity-50">
+        <p>CORSICAN DEFENSE MATRIX © {currentYear}</p>
+        <p>Protecting Corsica from donkey sausage eaters</p>
+      </footer>
     </div>
   );
 };

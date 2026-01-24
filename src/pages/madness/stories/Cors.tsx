@@ -199,13 +199,15 @@ const Cors = () => (
         </div>
       </section>
     </main>
-
-    <footer className="border-t-4 border-amber-600 bg-black/60 py-8">
-      <p className="text-center text-amber-300/80 italic">
-        This manifesto was written with love for Corsica, respect for static sites, and deep frustration with whoever named CORS errors.
-      </p>
-    </footer>
   </div>
+);
+
+export const CorsFooter = () => (
+  <footer className="border-t-4 border-amber-600 bg-slate-950 py-8">
+    <p className="text-center text-amber-300/80 italic">
+      This manifesto was written with love for Corsica, respect for static sites, and deep frustration with whoever named CORS errors.
+    </p>
+  </footer>
 );
 
 export default Cors;

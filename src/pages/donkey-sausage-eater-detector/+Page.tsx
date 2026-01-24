@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 
 import { formatPageTitle } from '@/lib/formatters';
 import { randint } from '@/lib/randint';
-import Main from '@/fragments/Main';
 import { cn } from '@/lib/utils';
 
 import accessGrantedSoundUrl from '../../../assets/sounds/access-granted.ogg';
@@ -10,7 +9,7 @@ import bsodSoundUrl from '../../../assets/sounds/horrible-freeze-sound.ogg';
 import DisapprovedVisitorGetOutPage from './DisapprovedVisitorGetOutPage';
 import ApprovedVisitorWelcomePage from './ApprovedVisitorWelcomePage';
 import { ERROR_PAGE_TITLE, PAGE_TITLE } from './constants';
-import Loader from './Loader';
+import Loader, { LoaderFooter } from './Loader';
 
 const DonkeySausageEaterDetector = () => {
   const [state, setState] = useState<'loading' | 'success' | 'error'>('loading');
@@ -56,19 +55,19 @@ const DonkeySausageEaterDetector = () => {
   }, [state]);
 
   return (
-    <Main
-      className={cn('justify-center font-mono transition-all duration-500', {
+    <div
+      className={cn('flex w-full max-w-full flex-1 flex-col justify-center gap-7 font-mono transition-all duration-500', {
         'inset-0 m-0 min-h-screen p-0 text-white': state === 'error' || state === 'success',
         'bg-[#000000]': state === 'loading',
         'bg-[#8b00aa]': state === 'success',
         'bg-[#0000AA]': state === 'error'
       })}
     >
-      <section
+      <div
         className={cn('my-8 flex flex-col items-center space-y-4', {
           'my-0 min-h-screen justify-center px-16 py-12 tracking-wider max-sm:px-2 max-sm:py-2': state === 'error' || state === 'success'
         })}
-        id={`content-${state === 'error' ? 'error' : state === 'loading' ? 'loading' : 'success'}`}
+        id={`content-${state}`}
       >
         {state === 'loading' && <Loader />}
 
@@ -79,8 +78,9 @@ const DonkeySausageEaterDetector = () => {
         <div className={cn({ hidden: state !== 'success' }, 'w-full')}>
           <ApprovedVisitorWelcomePage />
         </div>
-      </section>
-    </Main>
+      </div>
+      {state === 'loading' && <LoaderFooter />}
+    </div>
   );
 };
 
