@@ -13,15 +13,15 @@ const ThisIsBastia = () => {
   });
 
   return (
-    <div className="flex min-h-screen w-full flex-col items-center bg-black">
-      <div className="mt-8 max-w-4xl px-6 pb-12 font-serif text-amber-50">
+    <div className="min-h-screen w-full bg-black">
+      <div className="mx-auto mt-8 max-w-4xl px-6 pb-12 font-serif text-amber-50">
         <div className="mb-12 text-center">
           <h1 className="mb-4 text-6xl font-bold tracking-wider text-red-500 uppercase">This is bastia</h1>
           <p className="text-2xl text-amber-300 italic">A Corsican warning to Sicilian donkey sausage eaters</p>
         </div>
 
         <audio
-          className="mx-auto mb-12 w-full max-w-2xl rounded-md border-2 border-amber-600 p-2"
+          className="mx-auto mb-12 w-full max-w-[80vw] rounded-md border-2 border-amber-600 p-2"
           src={thisIsBastiaSongUrl}
           ref={audioRef}
           controls
@@ -48,7 +48,7 @@ const ThisIsBastia = () => {
           <div className="space-y-6 text-xl leading-relaxed">
             <p className="mb-6 text-center text-2xl text-amber-200 italic">"This is madness!" said the Sicilian.</p>
 
-            <p className="mb-6 text-center text-5xl font-bold tracking-wide text-red-500 uppercase">"Madness?"</p>
+            <p className="mb-6 text-center text-5xl font-bold tracking-wide text-red-500 uppercase max-sm:text-3xl">"Madness?"</p>
 
             <img className="border border-white" src={thisIsBastiaMemeUrl} alt="" />
           </div>
