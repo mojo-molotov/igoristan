@@ -142,7 +142,10 @@ export default function PokemonPicker() {
 
   if (fetchError) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-linear-to-br from-red-500 via-yellow-400 to-blue-500 px-4">
+      <div
+        className="flex min-h-screen flex-col items-center justify-center bg-linear-to-br from-red-500 via-yellow-400 to-blue-500 px-4"
+        id="fetch-error"
+      >
         <div className="max-w-md rounded-3xl bg-white p-8 text-center shadow-2xl">
           <div className="mb-6">
             <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-red-100">
