@@ -21,7 +21,7 @@ const DashboardNested = () => {
     );
   }
 
-  if (!isAuthenticated) {
+  if (!isAuthenticated()) {
     return (
       <Main className="justify-center">
         <LoginForm onLogin={login} />

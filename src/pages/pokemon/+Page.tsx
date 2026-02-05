@@ -96,8 +96,7 @@ export default function PokemonPicker() {
       setPokemons([...pokemons, newPokemon]);
       setIsComplete(true);
       setInputId('');
-    } catch (error) {
-      console.error('Error loading pokemon:', error);
+    } catch {
       setErrorMessage('Failed to load Pokémon. Please try again.');
     } finally {
       setAddingPokemon(false);

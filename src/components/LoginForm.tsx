@@ -2,23 +2,71 @@ import type { FunctionComponent, FormEvent } from 'react';
 
 import { useState } from 'react';
 
+import type { LoginFn } from '@/hooks/useAuth';
+
+interface OTPResponse {
+  createdAtTimestampLackingMsPrecision: string;
+  [key: string]: string;
+  expiresAt: string;
+  otpCode: string;
+  secret: string;
+}
+
 interface LoginFormProps {
-  onLogin: (username: string, password: string) => boolean;
+  onLogin: LoginFn;
 }
 
 const LoginForm: FunctionComponent<LoginFormProps> = ({ onLogin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [useOTP, setUseOTP] = useState(false);
+  const [otpApiKey, setOtpApiKey] = useState('');
+  const [otpResponse, setOtpResponse] = useState<OTPResponse | null>(null);
+  const [otpInput, setOtpInput] = useState('');
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError('');
 
-    const success = onLogin(username, password);
+    if (useOTP && !otpResponse) {
+      const success = onLogin({ withMFA: true, pre: true, password });
+      if (!success) {
+        setError('Invalid credentials. Try any:figatellu');
+        return;
+      }
 
+      try {
+        const response = await fetch(`https://tests-workers.vercel.app/api/otp?_user=${encodeURIComponent(username)}`, {
+          headers: {
+            'x-api-key': otpApiKey
+          }
+        });
+
+        const data = await response.json();
+        setOtpResponse(data);
+      } catch {
+        setError('Failed to connect to OTP service');
+      }
+
+      return;
+    }
+
+    if (useOTP && otpResponse) {
+      if (otpInput === otpResponse.otpCode) {
+        const success = onLogin({ withMFA: true, password });
+        if (!success) {
+          setError('Invalid credentials. Try any:figatellu');
+        }
+      } else {
+        setError('Invalid OTP code');
+      }
+      return;
+    }
+
+    const success = onLogin({ withMFA: false, password });
     if (!success) {
-      setError('Invalid credentials. Try admin:admin');
+      setError('Invalid credentials. Try any:figatellu');
     }
   };
 
@@ -29,35 +77,85 @@ const LoginForm: FunctionComponent<LoginFormProps> = ({ onLogin }) => {
           <h2 className="text-3xl font-bold">Authentication Required</h2>
           <p className="mt-2 text-sm text-gray-600">Please login to access this page</p>
         </div>
-
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="username">
-              Username
-            </label>
-            <input
-              className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-purple-500 focus:ring-1 focus:ring-purple-500 focus:outline-none"
-              onChange={(e) => setUsername(e.target.value)}
-              value={username}
-              id="username"
-              type="text"
-              required
-            />
-          </div>
+          {(!useOTP || !otpResponse) && (
+            <>
+              <div>
+                <label className="block text-sm font-medium text-gray-700" htmlFor="username">
+                  Username
+                </label>
+                <input
+                  className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-purple-500 focus:ring-1 focus:ring-purple-500 focus:outline-none"
+                  onChange={(e) => setUsername(e.target.value)}
+                  value={username}
+                  id="username"
+                  type="text"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700" htmlFor="password">
+                  Password
+                </label>
+                <input
+                  className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-purple-500 focus:ring-1 focus:ring-purple-500 focus:outline-none"
+                  onChange={(e) => setPassword(e.target.value)}
+                  value={password}
+                  type="password"
+                  id="password"
+                  required
+                />
+              </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="password">
-              Password
-            </label>
-            <input
-              className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-purple-500 focus:ring-1 focus:ring-purple-500 focus:outline-none"
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
-              type="password"
-              id="password"
-              required
-            />
-          </div>
+              <div className="flex items-center">
+                <input
+                  className="h-4 w-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
+                  onChange={(e) => setUseOTP(e.target.checked)}
+                  checked={useOTP}
+                  type="checkbox"
+                  id="use-otp"
+                />
+                <label className="ml-2 block text-sm text-gray-700" htmlFor="use-otp">
+                  Use OTP
+                </label>
+              </div>
+
+              {useOTP && (
+                <div>
+                  <label className="block text-sm font-medium text-gray-700" htmlFor="otp-api-key">
+                    OTP simulator API Key
+                  </label>
+                  <input
+                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-purple-500 focus:ring-1 focus:ring-purple-500 focus:outline-none"
+                    onChange={(e) => setOtpApiKey(e.target.value)}
+                    value={otpApiKey}
+                    id="otp-api-key"
+                    type="text"
+                    required
+                  />
+                </div>
+              )}
+            </>
+          )}
+
+          {useOTP && otpResponse && (
+            <div>
+              <label className="block text-sm font-medium text-gray-700" htmlFor="otp-code">
+                Enter OTP Code
+              </label>
+              <input
+                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-purple-500 focus:ring-1 focus:ring-purple-500 focus:outline-none"
+                onChange={(e) => setOtpInput(e.target.value)}
+                placeholder="Enter your OTP"
+                value={otpInput}
+                id="otp-code"
+                type="text"
+                autoFocus
+                required
+              />
+              <p className="mt-1 text-xs text-gray-500">Code expires at: {new Date(otpResponse.expiresAt).toLocaleTimeString()}</p>
+            </div>
+          )}
 
           {error && <div className="rounded-md bg-red-50 p-3 text-sm text-red-600">{error}</div>}
 
@@ -65,11 +163,10 @@ const LoginForm: FunctionComponent<LoginFormProps> = ({ onLogin }) => {
             className="w-full rounded-md bg-purple-600 px-4 py-2 font-semibold text-white shadow hover:cursor-pointer hover:bg-purple-700 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:outline-none"
             type="submit"
           >
-            Login
+            {useOTP && otpResponse ? 'Confirm OTP' : 'Login'}
           </button>
         </form>
-
-        <p className="text-center text-xs text-gray-500">Hint: admin / admin</p>
+        <p className="text-center text-xs text-gray-500">Hint: any / figatellu</p>
       </div>
     </div>
   );
