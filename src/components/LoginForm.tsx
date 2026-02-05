@@ -1,16 +1,12 @@
 import type { FunctionComponent, FormEvent } from 'react';
 
 import { useEffect, useState, useRef } from 'react';
+import { safeParse } from 'valibot';
 
+import type { OTPResponse } from '@/schemas/OTPResponseSchema';
 import type { LoginFn } from '@/hooks/useAuth';
 
-interface OTPResponse {
-  createdAtTimestampLackingMsPrecision: string;
-  [key: string]: string;
-  expiresAt: string;
-  otpCode: string;
-  secret: string;
-}
+import { OTPResponseSchema } from '@/schemas/OTPResponseSchema';
 
 interface LoginFormProps {
   onLogin: LoginFn;
@@ -60,7 +56,15 @@ const LoginForm: FunctionComponent<LoginFormProps> = ({ onLogin }) => {
         }
 
         const data = await response.json();
-        setOtpResponse(data);
+
+        const parseResult = safeParse(OTPResponseSchema, data);
+
+        if (!parseResult.success) {
+          setError('Invalid OTP response format');
+          return;
+        }
+
+        setOtpResponse(parseResult.output);
       } catch (err) {
         if (err instanceof Error && err.name === 'AbortError') {
           return;
