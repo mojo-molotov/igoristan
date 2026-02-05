@@ -1,3 +1,6 @@
+import { navigate } from 'vike/client/router';
+import { useState } from 'react';
+
 import BackToHome from '@/components/BackToHome';
 import LoginForm from '@/components/LoginForm';
 import Loading from '@/components/Loading';
@@ -7,7 +10,18 @@ import Main from '@/fragments/Main';
 import H1 from '@/fragments/H1';
 
 const Dashboard = () => {
-  const { isAuthenticated, isLoading, logout, login } = useAuth();
+  const { isAuthenticatedWithMFA, isAuthenticated, isLoading, logout, login } = useAuth();
+  const [mfaError, setMfaError] = useState('');
+
+  const handleNestedPageClick = () => {
+    if (!isAuthenticatedWithMFA()) {
+      setMfaError('Access to this page requires OTP authentication');
+      return;
+    }
+
+    setMfaError('');
+    navigate(ROUTES.DASHBOARD_NESTED);
+  };
 
   if (isLoading) {
     return (
@@ -35,13 +49,21 @@ const Dashboard = () => {
       <section className="my-8 flex flex-col items-center space-y-6" id="dashboard-content">
         <H1 className="text-4xl font-extrabold">Dashboard</H1>
         <p className="text-gray-600">Welcome, admin! You authenticated.</p>
-
+        {mfaError && <div className="rounded-md border border-yellow-200 bg-yellow-50 p-4 text-sm text-yellow-800">{mfaError}</div>}
         <div className="flex gap-4">
-          <a className="rounded-md bg-purple-600 px-6 py-3 font-semibold text-white shadow hover:bg-purple-700" href={ROUTES.DASHBOARD_NESTED}>
+          <button
+            className="rounded-md bg-purple-600 px-6 py-3 font-semibold text-white shadow hover:cursor-pointer hover:bg-purple-700"
+            onClick={handleNestedPageClick}
+          >
             Go to Nested Page
-          </a>
-
-          <button className="rounded-md bg-red-600 px-6 py-3 font-semibold text-white shadow hover:cursor-pointer hover:bg-red-700" onClick={logout}>
+          </button>
+          <button
+            className="rounded-md bg-red-600 px-6 py-3 font-semibold text-white shadow hover:cursor-pointer hover:bg-red-700"
+            onClick={() => {
+              setMfaError('');
+              logout();
+            }}
+          >
             Logout
           </button>
         </div>

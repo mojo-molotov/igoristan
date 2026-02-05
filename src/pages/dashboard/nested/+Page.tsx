@@ -1,5 +1,5 @@
-import BackToHome from '@/components/BackToHome';
-import LoginForm from '@/components/LoginForm';
+import { navigate } from 'vike/client/router';
+
 import Loading from '@/components/Loading';
 import { useAuth } from '@/hooks/useAuth';
 import ROUTES from '@/config/routes';
@@ -7,7 +7,7 @@ import Main from '@/fragments/Main';
 import H1 from '@/fragments/H1';
 
 const DashboardNested = () => {
-  const { isAuthenticated, isLoading, logout, login } = useAuth();
+  const { isAuthenticatedWithMFA, isAuthenticated, isLoading, logout } = useAuth();
 
   if (isLoading) {
     return (
@@ -21,13 +21,8 @@ const DashboardNested = () => {
     );
   }
 
-  if (!isAuthenticated()) {
-    return (
-      <Main className="justify-center">
-        <LoginForm onLogin={login} />
-        <BackToHome />
-      </Main>
-    );
+  if (!isAuthenticated() || !isAuthenticatedWithMFA()) {
+    navigate(ROUTES.DASHBOARD);
   }
 
   return (
