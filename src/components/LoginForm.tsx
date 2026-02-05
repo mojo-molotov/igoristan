@@ -43,6 +43,11 @@ const LoginForm: FunctionComponent<LoginFormProps> = ({ onLogin }) => {
           }
         });
 
+        if (!response.ok) {
+          setError(`Failed to connect to OTP service (${response.status})`);
+          return;
+        }
+
         const data = await response.json();
         setOtpResponse(data);
       } catch {
@@ -53,6 +58,16 @@ const LoginForm: FunctionComponent<LoginFormProps> = ({ onLogin }) => {
     }
 
     if (useOTP && otpResponse) {
+      const now = new Date();
+      const expiresAt = new Date(otpResponse.expiresAt);
+
+      if (now > expiresAt) {
+        setError('OTP code has expired.');
+        setOtpResponse(null);
+        setOtpInput('');
+        return;
+      }
+
       if (otpInput === otpResponse.otpCode) {
         const success = onLogin({ withMFA: true, password });
         if (!success) {
