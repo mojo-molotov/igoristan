@@ -81,7 +81,7 @@ const RandomLoaders = () => {
         <h1 className="mb-2 text-center text-4xl font-extrabold text-gray-900">Kind words with spinners</h1>
         <div className="mt-10 flex flex-wrap justify-center gap-16">
           {Array.from({ length: numberOfLoaders }, (_, i) => (
-            <div className="h-25 w-42.5" key={i}>
+            <div className="h-fit w-fit" key={i}>
               <RandomLoader loadedLabel={getNextLoadedLabel()} id={`${i + 1}`} />
             </div>
           ))}
