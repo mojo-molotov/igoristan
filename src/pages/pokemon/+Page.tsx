@@ -1,37 +1,11 @@
 import { RefreshCw, Volume2, Plus } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { safeParse } from 'valibot';
 
+import type { Pokemon } from '@/schemas/Pokemon';
+
+import { PokemonSchema } from '@/schemas/Pokemon';
 import { randint } from '@/lib/randint';
-
-interface Pokemon {
-  sprites: PokemonSprites;
-  types: PokemonType[];
-  cries?: PokemonCries;
-  height: number;
-  weight: number;
-  name: string;
-  id: number;
-}
-
-interface PokemonSprites {
-  other: {
-    'official-artwork': {
-      front_default: string;
-    };
-  };
-  front_default: string;
-}
-
-interface PokemonCries {
-  latest?: string;
-  legacy?: string;
-}
-
-interface PokemonType {
-  type: {
-    name: string;
-  };
-}
 
 export default function PokemonPicker() {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
@@ -61,12 +35,20 @@ export default function PokemonPicker() {
         throw new Error('lol');
       }
 
-      const promises = ids.map((id) =>
-        fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) => {
-          if (!res.ok) throw new Error('Failed to fetch pokemon');
-          return res.json();
-        })
-      );
+      const promises = ids.map(async (id) => {
+        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+        if (!res.ok) throw new Error('Failed to fetch pokemon');
+
+        const data = await res.json();
+        const parseResult = safeParse(PokemonSchema, data);
+
+        if (!parseResult.success) {
+          throw new Error('Invalid Pokemon data format');
+        }
+
+        return parseResult.output;
+      });
+
       const results: Pokemon[] = await Promise.all(promises);
       await new Promise((resolve) => setTimeout(resolve, 3000));
       setPokemons(results);
@@ -110,7 +92,14 @@ export default function PokemonPicker() {
         throw new Error('Pokémon not found');
       }
 
-      const newPokemon: Pokemon = await response.json();
+      const data = await response.json();
+      const parseResult = safeParse(PokemonSchema, data);
+
+      if (!parseResult.success) {
+        throw new Error('Invalid Pokemon data format');
+      }
+
+      const newPokemon = parseResult.output;
       await new Promise((resolve) => setTimeout(resolve, 1500));
       setPokemons([...pokemons, newPokemon]);
       setIsComplete(true);
