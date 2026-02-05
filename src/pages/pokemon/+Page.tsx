@@ -1,6 +1,8 @@
 import { RefreshCw, Volume2, Plus } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
+import { randint } from '@/lib/randint';
+
 interface Pokemon {
   sprites: PokemonSprites;
   types: PokemonType[];
@@ -38,11 +40,13 @@ export default function PokemonPicker() {
   const [isComplete, setIsComplete] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [addingPokemon, setAddingPokemon] = useState<boolean>(false);
+  const [fetchError, setFetchError] = useState<boolean>(false);
 
   const fetchRandomPokemons = async (): Promise<void> => {
     setLoading(true);
     setIsComplete(false);
     setErrorMessage('');
+    setFetchError(false);
     const ids: number[] = [];
 
     while (ids.length < 3) {
@@ -53,12 +57,22 @@ export default function PokemonPicker() {
     }
 
     try {
-      const promises = ids.map((id) => fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) => res.json()));
+      if (randint(1, 5) === 1) {
+        throw new Error('lol');
+      }
+
+      const promises = ids.map((id) =>
+        fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) => {
+          if (!res.ok) throw new Error('Failed to fetch pokemon');
+          return res.json();
+        })
+      );
       const results: Pokemon[] = await Promise.all(promises);
       await new Promise((resolve) => setTimeout(resolve, 3000));
       setPokemons(results);
     } catch (error) {
       console.error('Error loading pokemon:', error);
+      setFetchError(true);
     } finally {
       setLoading(false);
     }
@@ -87,10 +101,15 @@ export default function PokemonPicker() {
     setErrorMessage('');
 
     try {
+      if (randint(1, 5) === 1) {
+        throw new Error('lol');
+      }
+
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
       if (!response.ok) {
         throw new Error('Pokémon not found');
       }
+
       const newPokemon: Pokemon = await response.json();
       await new Promise((resolve) => setTimeout(resolve, 1500));
       setPokemons([...pokemons, newPokemon]);
@@ -132,22 +151,35 @@ export default function PokemonPicker() {
     return colors[type] || 'bg-gray-400';
   };
 
+  if (fetchError) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center bg-linear-to-br from-red-500 via-yellow-400 to-blue-500 px-4">
+        <div className="max-w-md rounded-3xl bg-white p-8 text-center shadow-2xl">
+          <div className="mb-6">
+            <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-red-100">
+              <span className="text-4xl">⚠️</span>
+            </div>
+            <h2 className="mb-2 text-2xl font-bold text-gray-800">Oops! Something went wrong</h2>
+            <p className="text-gray-600">Failed to load Pokémon. Please check your connection and try again.</p>
+          </div>
+          <button
+            className="flex w-full items-center justify-center gap-2 rounded-xl bg-linear-to-r from-red-500 to-blue-500 px-6 py-3 font-bold text-white shadow-lg transition-all hover:from-red-600 hover:to-blue-600"
+            onClick={fetchRandomPokemons}
+          >
+            <RefreshCw className="h-5 w-5" />
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   if (loading) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center bg-linear-to-br from-red-500 via-yellow-400 to-blue-500">
         <div className="text-center">
           <div className="mx-auto mb-4 h-16 w-16 animate-spin rounded-full border-4 border-white border-t-transparent" />
           <p className="text-2xl font-bold text-white">Searching for Pokémons...</p>
-        </div>
-
-        <div className="mt-12 text-center">
-          <button
-            className="mx-auto flex transform items-center gap-2 rounded-full bg-white px-6 py-3 text-lg font-bold text-red-500 shadow-lg transition-all hover:scale-105 hover:shadow-xl"
-            disabled
-          >
-            <RefreshCw className="h-5 w-5" />
-            New Draw
-          </button>
         </div>
       </div>
     );
@@ -228,7 +260,7 @@ export default function PokemonPicker() {
                 <div className="mb-4">
                   <input
                     className="w-full rounded-xl border-2 border-white/50 bg-white/90 px-4 py-3 text-center text-xl font-bold text-gray-800 placeholder-gray-400 focus:border-white focus:outline-none disabled:opacity-50"
-                    onKeyPress={(e) => e.key === 'Enter' && !addingPokemon && handleAddPokemon()}
+                    onKeyDown={(e) => e.key === 'Enter' && !addingPokemon && handleAddPokemon()}
                     onChange={(e) => setInputId(e.target.value)}
                     placeholder="Enter ID..."
                     disabled={addingPokemon}
