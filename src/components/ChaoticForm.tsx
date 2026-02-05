@@ -48,16 +48,16 @@ const ChaoticForm = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (Math.random() < 0.15) {
-        const error = randomErrors[randint(0, randomErrors.length - 1)];
-        setRandomError(error);
+      if (Math.random() > 0.15) return;
 
-        const timeout = setTimeout(() => {
-          setRandomError('');
-        }, 5e3);
+      const error = randomErrors[randint(0, randomErrors.length - 1)];
+      setRandomError(error);
 
-        return () => clearTimeout(timeout);
-      }
+      const timeout = setTimeout(() => {
+        setRandomError('');
+      }, 5e3);
+
+      return () => clearTimeout(timeout);
     }, 5e3);
 
     return () => clearInterval(interval);
