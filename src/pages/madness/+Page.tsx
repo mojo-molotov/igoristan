@@ -8,7 +8,7 @@ import { randint } from '@/lib/randint';
 import ThisIsBastia, { ThisIsBastiaFooter } from './stories/ThisIsBastia';
 import Cors, { CorsFooter } from './stories/Cors';
 
-const [MIN, MAX] = [1, 5] as const;
+const [MIN, MAX] = [1, 2] as const;
 
 const getRandomNumber = () => randint(MIN, MAX) as NRange;
 const isInRange = (n: number): n is NRange => MIN <= n && n <= MAX;
