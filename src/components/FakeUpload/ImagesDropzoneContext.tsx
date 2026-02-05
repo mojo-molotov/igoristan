@@ -1,6 +1,13 @@
 import type { FunctionComponent, ReactNode } from 'react';
+import type { InferOutput } from 'valibot';
 
 import { createContext, useContext, useState } from 'react';
+import { object, string, array } from 'valibot';
+
+const images = array(string());
+export const ImagesFormDataSchema = object({ images });
+
+export type ImagesFormData = InferOutput<typeof ImagesFormDataSchema>;
 
 interface ImagesDropzoneContext {
   setImages: (images: Images) => void;
@@ -33,5 +40,5 @@ export const ImagesDropzoneProvider: FunctionComponent<ImageProviderProps> = ({ 
   return <ImagesContext.Provider value={{ setImages: updateImages, images }}>{children}</ImagesContext.Provider>;
 };
 
-export type Images = Image[];
-export type Image = string;
+export type Images = ImagesFormData['images'];
+export type Image = Images[number];

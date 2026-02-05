@@ -1,22 +1,13 @@
 import { valibotResolver } from '@hookform/resolvers/valibot';
 import { useCallback, useEffect, useState } from 'react';
-import { object, string, array } from 'valibot';
 import { useForm } from 'react-hook-form';
 
 import { Button } from '@/components/Button';
 
-import type { Images } from './ImagesDropzoneContext';
+import type { ImagesFormData, Images } from './ImagesDropzoneContext';
 
-import { useImagesDropzoneContext } from './ImagesDropzoneContext';
+import { useImagesDropzoneContext, ImagesFormDataSchema } from './ImagesDropzoneContext';
 import ImagesDropzone from './ImagesDropzone';
-
-const FormDataSchema = object({
-  images: array(string())
-});
-
-interface FormData {
-  images: Images;
-}
 
 const MysticalConfirmation = ({ onConfirm, onCancel }: { onConfirm: () => void; onCancel: () => void }) => {
   useEffect(() => {
@@ -66,8 +57,8 @@ const MysticalConfirmation = ({ onConfirm, onCancel }: { onConfirm: () => void; 
 
 const FakeUploadForm = () => {
   const { setImages, images } = useImagesDropzoneContext();
-  const { handleSubmit, setValue, watch } = useForm<FormData>({
-    resolver: valibotResolver(FormDataSchema),
+  const { handleSubmit, setValue, watch } = useForm<ImagesFormData>({
+    resolver: valibotResolver(ImagesFormDataSchema),
     defaultValues: { images: [] },
     mode: 'all'
   });
@@ -75,7 +66,7 @@ const FakeUploadForm = () => {
   const [uploading, setUploading] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [showConfirmation, setShowConfirmation] = useState(false);
-  const [pendingData, setPendingData] = useState<FormData | null>(null);
+  const [pendingData, setPendingData] = useState<ImagesFormData | null>(null);
 
   const formImages = watch('images');
 
@@ -91,14 +82,14 @@ const FakeUploadForm = () => {
     setValue('images', images);
   }, [images, setValue]);
 
-  const performUpload = useCallback((data: FormData) => {
+  const performUpload = useCallback((data: ImagesFormData) => {
     if (data.images.length === 0) return;
     setUploading(true);
     setProgress(0);
     setSuccessMessage('');
   }, []);
 
-  const onSubmit = useCallback((data: FormData) => {
+  const onSubmit = useCallback((data: ImagesFormData) => {
     setPendingData(data);
     setShowConfirmation(true);
   }, []);
