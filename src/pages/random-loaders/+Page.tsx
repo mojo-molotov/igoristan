@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 
 import RandomLoader from '@/components/RandomLoader';
+import BackToHome from '@/components/BackToHome';
 import shuffle from '@/lib/shuffle';
 import Main from '@/fragments/Main';
 
@@ -87,6 +88,7 @@ const RandomLoaders = () => {
           ))}
         </div>
       </section>
+      <BackToHome />
     </Main>
   );
 };

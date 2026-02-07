@@ -5,9 +5,12 @@ import { safeParse } from 'valibot';
 import type { Pokemon } from '@/schemas/Pokemon';
 
 import { PokemonSchema } from '@/schemas/Pokemon';
+import BackToHome from '@/components/BackToHome';
 import { randint } from '@/lib/randint';
 
 const CORSICADEX_API = 'https://tests-workers.vercel.app/api/corsicadex';
+
+const BackToHomeComp = () => <BackToHome className="mx-auto mt-4 flex w-fit font-extrabold text-white" />;
 
 export default function PokemonPicker() {
   const [apiKey, setApiKey] = useState<string>('');
@@ -192,6 +195,7 @@ export default function PokemonPicker() {
             Access Corsicadex
           </button>
         </div>
+        <BackToHomeComp />
       </div>
     );
   }
@@ -218,6 +222,7 @@ export default function PokemonPicker() {
             Retry
           </button>
         </div>
+        <BackToHomeComp />
       </div>
     );
   }
@@ -364,6 +369,7 @@ export default function PokemonPicker() {
           </div>
         )}
       </div>
+      <BackToHomeComp />
     </div>
   );
 }

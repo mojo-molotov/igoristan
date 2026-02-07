@@ -14,11 +14,18 @@ import H2 from '@/fragments/H2';
 export default function Page() {
   const pageContext = usePageContext();
   const [isMounted, setIsMounted] = useState<boolean>(false);
+  const [random500, setRandom500] = useState<boolean>(false);
 
-  const { is404 } = pageContext;
+  const { urlParsed, is404 } = pageContext;
+
+  useEffect(() => {
+    const lastSegment = urlParsed.pathname.split('/').filter(Boolean).at(-1);
+    const triggerRandom500 = lastSegment === 'random-error' && Math.random() < 0.3;
+    if (triggerRandom500) setRandom500(true);
+  }, [urlParsed.pathname]);
 
   const force500 = pageContext.urlParsed.search.figatellu === 'donkey-sausage-is-an-heresy';
-  const show404 = is404 && !force500;
+  const show404 = is404 && !force500 && !random500;
 
   const mainClassname = cn('justify-center text-center transition-opacity duration-700', {
     'opacity-100': isMounted,

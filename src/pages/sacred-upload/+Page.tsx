@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { ImagesDropzoneProvider } from '@/components/FakeUpload/ImagesDropzoneContext';
 import RandomBibleVerse from '@/components/RandomBibleVerse';
 import FakeUploadForm from '@/components/FakeUpload/Form';
+import BackToHome from '@/components/BackToHome';
 import Main from '@/fragments/Main';
 import shuffle from '@/lib/shuffle';
 import BRAND from '@/config/brand';
@@ -77,6 +78,7 @@ const Upload = () => {
 
         <Text />
         <RandomBibleVerse />
+        <BackToHome className="font-extrabold text-white" />
       </Main>
     </>
   );

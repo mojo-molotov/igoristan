@@ -1,3 +1,7 @@
+import { Button } from '@/components/Button';
+import Link from '@/components/Link';
+import ROUTES from '@/config/routes';
+
 import corsicaStacksCreativeUrl from '../../../../assets/images/creatives/corsica-stacks.png';
 import corsErrorCreativeUrl from '../../../../assets/images/creatives/cors-error.jpg';
 import elbaErrorCreativeUrl from '../../../../assets/images/creatives/elba-error.png';
@@ -198,6 +202,12 @@ const Cors = () => (
           <p className="mt-8 text-2xl font-bold text-amber-100">Amen.</p>
         </div>
       </section>
+
+      <Button asChild>
+        <Link className="mx-auto mt-4 flex w-fit bg-red-800 px-8 py-6 text-xl font-bold hover:bg-red-500" href={ROUTES.CORSICAMON}>
+          🖱️ Use API anyway
+        </Link>
+      </Button>
     </main>
   </div>
 );
