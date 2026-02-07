@@ -28,7 +28,7 @@ const Dropzone: FunctionComponent<DropzoneProps> = ({ handleKeyDown, getInputPro
       )}
       onKeyDown={handleKeyDown}
     >
-      <input {...inputProps} className="absolute -z-1 opacity-0" style={{ display: 'initial' }} />
+      <input {...inputProps} className="absolute inset-0 h-full w-full cursor-pointer opacity-0" />
       <p className="font-semibold text-gray-600">{title}</p>
     </div>
   );

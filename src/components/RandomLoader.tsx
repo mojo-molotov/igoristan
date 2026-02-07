@@ -36,7 +36,7 @@ const RandomLoader: FunctionComponent<RandomLoaderProps> = ({ loadedLabel, id })
   return (
     <div className="flex items-center justify-center bg-gray-100" id={id}>
       <div className="rounded-lg bg-white px-8 py-6 shadow-lg">
-        <h1 className="text-2xl font-bold text-green-600">{loadedLabel}</h1>
+        <h1 className="max-w-[80vw] text-2xl font-bold wrap-break-word whitespace-normal text-green-600">{loadedLabel}</h1>
       </div>
     </div>
   );

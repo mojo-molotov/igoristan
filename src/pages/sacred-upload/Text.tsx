@@ -10,12 +10,12 @@ const Text = () => {
   });
 
   return (
-    <div className="max-w-8xl mx-auto min-h-screen bg-black/40 px-6 py-12 font-serif font-black text-amber-50">
-      <h1 className="mb-4 text-center text-8xl font-bold text-amber-200">The Gospel of the Sacred Upload</h1>
+    <div className="mx-auto min-h-screen max-w-[80vw] bg-black/40 px-6 py-12 font-serif font-black text-amber-50">
+      <h1 className="mb-4 text-center text-8xl font-bold text-amber-200 max-sm:text-4xl">The Gospel of the Sacred Upload</h1>
       <p className="mb-12 text-center text-3xl text-amber-300 italic">A Revelation Given to Saint Igor of Corsica</p>
 
       <audio
-        className="mx-auto mb-12 w-full max-w-2xl rounded-md border-2 border-amber-600 bg-amber-900 p-2"
+        className="mx-auto mb-12 w-full max-w-[80vw] rounded-md border-2 border-amber-600 bg-amber-900 p-2"
         src={aveMaria8BitsSongUrl}
         ref={audioRef}
         controls
