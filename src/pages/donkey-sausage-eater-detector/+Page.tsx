@@ -4,6 +4,7 @@ import { formatPageTitle } from '@/lib/formatters';
 import { randint } from '@/lib/randint';
 import { cn } from '@/lib/utils';
 
+import sausageMonsterUrl from '../../../assets/images/monsters/donkey-sausage-monster.png';
 import accessGrantedSoundUrl from '../../../assets/sounds/access-granted.ogg';
 import bsodSoundUrl from '../../../assets/sounds/horrible-freeze-sound.ogg';
 import DisapprovedVisitorGetOutPage from './DisapprovedVisitorGetOutPage';
@@ -26,6 +27,7 @@ const DonkeySausageEaterDetector = () => {
       },
       randint(1, 5) * 250 + 450
     );
+
     return () => clearTimeout(timeoutId);
   }, []);
 
@@ -35,7 +37,6 @@ const DonkeySausageEaterDetector = () => {
     audio.volume = 1;
     audio.loop = true;
     audio.play().catch(() => {});
-
     return () => {
       audio.pause();
       audio.currentTime = 0;
@@ -47,7 +48,6 @@ const DonkeySausageEaterDetector = () => {
     const audio = new Audio(accessGrantedSoundUrl);
     audio.volume = 1;
     audio.play().catch(() => {});
-
     return () => {
       audio.pause();
       audio.currentTime = 0;
@@ -69,12 +69,15 @@ const DonkeySausageEaterDetector = () => {
         })}
         id={`content-${state}`}
       >
-        {state === 'loading' && <Loader />}
-
+        {state === 'loading' && (
+          <>
+            <Loader />
+            <img className="mt-8 h-auto w-80 select-none max-sm:hidden" src={sausageMonsterUrl} alt="Sausage Monster" draggable={false} />
+          </>
+        )}
         <div className={cn({ hidden: state !== 'error' }, 'w-full max-w-4xl space-y-6')}>
           <DisapprovedVisitorGetOutPage />
         </div>
-
         <div className={cn({ hidden: state !== 'success' }, 'w-full')}>
           <ApprovedVisitorWelcomePage />
         </div>
