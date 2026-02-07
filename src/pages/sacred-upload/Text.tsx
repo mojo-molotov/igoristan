@@ -5,6 +5,7 @@ import candleGifUrl from '../../../assets/gifs/candle.gif';
 
 const Text = () => {
   const audioRef = useAutoPlayAudio({
+    deferedAutoplay: true,
     volume: 1
   });
 

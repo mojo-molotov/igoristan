@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import throttle from 'throttleit';
 
-export const useAutoPlayAudio = ({ throttleDelay = 500, volume = 1 } = {}) => {
+export const useAutoPlayAudio = ({ deferedAutoplay = false, throttleDelay = 500, volume = 1 } = {}) => {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
@@ -22,11 +22,13 @@ export const useAutoPlayAudio = ({ throttleDelay = 500, volume = 1 } = {}) => {
     document.addEventListener('click', playAudio);
     document.addEventListener('scroll', throttledPlayAudio);
 
+    if (!deferedAutoplay) playAudio();
+
     return () => {
       document.removeEventListener('click', playAudio);
       document.removeEventListener('scroll', throttledPlayAudio);
     };
-  }, [volume, throttleDelay]);
+  }, [volume, throttleDelay, deferedAutoplay]);
 
   return audioRef;
 };
