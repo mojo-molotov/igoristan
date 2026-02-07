@@ -48,7 +48,7 @@ const Dashboard = () => {
     <Main className="justify-center">
       <section className="my-8 flex flex-col items-center space-y-6" id="dashboard-content">
         <H1 className="text-4xl font-extrabold">Dashboard</H1>
-        <p className="text-gray-600">Welcome, admin! You authenticated.</p>
+        <p className="text-gray-600">Welcome! You authenticated.</p>
         {mfaError && <div className="rounded-md border border-yellow-200 bg-yellow-50 p-4 text-sm text-yellow-800">{mfaError}</div>}
         <div className="flex gap-4">
           <button
