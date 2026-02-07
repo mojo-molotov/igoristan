@@ -1,5 +1,5 @@
-import { RefreshCw, Volume2, Plus } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { RefreshCw, Volume2, Plus, Key } from 'lucide-react';
+import { useCallback, useEffect, useState } from 'react';
 import { safeParse } from 'valibot';
 
 import type { Pokemon } from '@/schemas/Pokemon';
@@ -7,7 +7,11 @@ import type { Pokemon } from '@/schemas/Pokemon';
 import { PokemonSchema } from '@/schemas/Pokemon';
 import { randint } from '@/lib/randint';
 
+const CORSICADEX_API = 'https://tests-workers.vercel.app/api/corsicadex';
+
 export default function PokemonPicker() {
+  const [apiKey, setApiKey] = useState<string>('');
+  const [apiKeyInput, setApiKeyInput] = useState<string>('');
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [inputId, setInputId] = useState<string>('');
@@ -16,7 +20,7 @@ export default function PokemonPicker() {
   const [addingPokemon, setAddingPokemon] = useState<boolean>(false);
   const [fetchError, setFetchError] = useState<boolean>(false);
 
-  const fetchRandomPokemons = async (): Promise<void> => {
+  const fetchRandomPokemons = useCallback(async (): Promise<void> => {
     setLoading(true);
     setIsComplete(false);
     setErrorMessage('');
@@ -24,7 +28,7 @@ export default function PokemonPicker() {
     const ids: number[] = [];
 
     while (ids.length < 3) {
-      const randomId = Math.floor(Math.random() * 898) + 1;
+      const randomId = Math.floor(Math.random() * 8) + 1;
       if (!ids.includes(randomId)) {
         ids.push(randomId);
       }
@@ -36,14 +40,18 @@ export default function PokemonPicker() {
       }
 
       const promises = ids.map(async (id) => {
-        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-        if (!res.ok) throw new Error('Failed to fetch pokemon');
+        const res = await fetch(`${CORSICADEX_API}?id=${id}`, {
+          headers: {
+            'x-api-key': apiKey
+          }
+        });
+        if (!res.ok) throw new Error('Failed to fetch corsicamon');
 
         const data = await res.json();
         const parseResult = safeParse(PokemonSchema, data);
 
         if (!parseResult.success) {
-          throw new Error('Invalid Pokemon data format');
+          throw new Error('Invalid Corsicamon data format');
         }
 
         return parseResult.output;
@@ -53,29 +61,31 @@ export default function PokemonPicker() {
       await new Promise((resolve) => setTimeout(resolve, 3000));
       setPokemons(results);
     } catch (error) {
-      console.error('Error loading pokemon:', error);
+      console.error('Error loading corsicamon:', error);
       setFetchError(true);
     } finally {
       setLoading(false);
     }
-  };
+  }, [apiKey]);
 
   useEffect(() => {
-    fetchRandomPokemons();
-  }, []);
+    if (apiKey) {
+      fetchRandomPokemons();
+    }
+  }, [apiKey, fetchRandomPokemons]);
 
   const handleAddPokemon = async (): Promise<void> => {
     const pokemonId = parseInt(inputId);
 
-    if (isNaN(pokemonId) || pokemonId < 1 || pokemonId > 898) {
-      setErrorMessage('Please enter a valid Pokémon ID (1-898)');
+    if (isNaN(pokemonId) || pokemonId < 1 || pokemonId > 8) {
+      setErrorMessage('Please enter a valid Corsicamon ID (1-8)');
       return;
     }
 
     const alreadyExists = pokemons.some((p) => p.id === pokemonId);
 
     if (alreadyExists) {
-      setErrorMessage(`Pokémon #${pokemonId} is already in your draw!`);
+      setErrorMessage(`Corsicamon #${pokemonId} is already in your draw!`);
       return;
     }
 
@@ -87,16 +97,20 @@ export default function PokemonPicker() {
         throw new Error('lol');
       }
 
-      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
+      const response = await fetch(`${CORSICADEX_API}?id=${pokemonId}`, {
+        headers: {
+          'x-api-key': apiKey
+        }
+      });
       if (!response.ok) {
-        throw new Error('Pokémon not found');
+        throw new Error('Corsicamon not found');
       }
 
       const data = await response.json();
       const parseResult = safeParse(PokemonSchema, data);
 
       if (!parseResult.success) {
-        throw new Error('Invalid Pokemon data format');
+        throw new Error('Invalid Corsicamon data format');
       }
 
       const newPokemon = parseResult.output;
@@ -105,7 +119,7 @@ export default function PokemonPicker() {
       setIsComplete(true);
       setInputId('');
     } catch {
-      setErrorMessage('Failed to load Pokémon. Please try again.');
+      setErrorMessage('Failed to load Corsicamon. Please try again.');
     } finally {
       setAddingPokemon(false);
     }
@@ -118,18 +132,24 @@ export default function PokemonPicker() {
 
   const getTypeColor = (type: string): string => {
     const colors: Record<string, string> = {
+      'siciliacchia di merda': 'bg-stone-800',
       electric: 'bg-yellow-400',
+      charcuterie: 'bg-red-700',
       poison: 'bg-purple-500',
       ground: 'bg-yellow-600',
       flying: 'bg-indigo-400',
       dragon: 'bg-indigo-600',
+      cheese: 'bg-yellow-300',
       fighting: 'bg-red-600',
       psychic: 'bg-pink-500',
       ghost: 'bg-purple-700',
+      dessert: 'bg-pink-400',
+      noble: 'bg-purple-600',
       normal: 'bg-gray-400',
       fire: 'bg-orange-500',
       grass: 'bg-green-500',
       rock: 'bg-yellow-700',
+      drink: 'bg-amber-600',
       water: 'bg-blue-500',
       steel: 'bg-gray-500',
       fairy: 'bg-pink-300',
@@ -139,6 +159,42 @@ export default function PokemonPicker() {
     };
     return colors[type] || 'bg-gray-400';
   };
+
+  if (!apiKey) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center bg-linear-to-br from-red-500 via-yellow-400 to-blue-500 px-4">
+        <div className="max-w-md rounded-3xl bg-white p-8 text-center shadow-2xl">
+          <div className="mb-6">
+            <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-blue-100">
+              <Key className="h-10 w-10 text-blue-600" />
+            </div>
+            <h2 className="mb-2 text-2xl font-bold text-gray-800">Enter API Key</h2>
+            <p className="text-gray-600">Please enter your Corsicadex API key to continue</p>
+          </div>
+
+          <div className="mb-4">
+            <input
+              className="w-full rounded-xl border-2 border-gray-300 bg-white px-4 py-3 text-center font-mono text-gray-800 placeholder-gray-400 focus:border-blue-500 focus:outline-none"
+              onKeyDown={(e) => e.key === 'Enter' && apiKeyInput && setApiKey(apiKeyInput)}
+              onChange={(e) => setApiKeyInput(e.target.value)}
+              placeholder="Enter your API key..."
+              value={apiKeyInput}
+              type="text"
+            />
+          </div>
+
+          <button
+            className="flex w-full items-center justify-center gap-2 rounded-xl bg-linear-to-r from-blue-500 to-purple-500 px-6 py-3 font-bold text-white shadow-lg transition-all hover:from-blue-600 hover:to-purple-600 disabled:cursor-not-allowed disabled:opacity-50"
+            onClick={() => setApiKey(apiKeyInput)}
+            disabled={!apiKeyInput}
+          >
+            <Key className="h-5 w-5" />
+            Access Corsicadex
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   if (fetchError) {
     return (
@@ -152,7 +208,7 @@ export default function PokemonPicker() {
               <span className="text-4xl">⚠️</span>
             </div>
             <h2 className="mb-2 text-2xl font-bold text-gray-800">Oops! Something went wrong</h2>
-            <p className="text-gray-600">Failed to load Pokémon. Please check your connection and try again.</p>
+            <p className="text-gray-600">Failed to load Corsicamons. Please check your connection and try again.</p>
           </div>
           <button
             className="flex w-full items-center justify-center gap-2 rounded-xl bg-linear-to-r from-red-500 to-blue-500 px-6 py-3 font-bold text-white shadow-lg transition-all hover:from-red-600 hover:to-blue-600"
@@ -171,7 +227,7 @@ export default function PokemonPicker() {
       <div className="flex min-h-screen flex-col items-center justify-center bg-linear-to-br from-red-500 via-yellow-400 to-blue-500">
         <div className="text-center">
           <div className="mx-auto mb-4 h-16 w-16 animate-spin rounded-full border-4 border-white border-t-transparent" />
-          <p className="text-2xl font-bold text-white">Searching for Pokémons...</p>
+          <p className="text-2xl font-bold text-white">Searching for Corsicamons...</p>
         </div>
       </div>
     );
@@ -245,8 +301,8 @@ export default function PokemonPicker() {
                   <div className="mx-auto mb-4 flex h-32 w-32 items-center justify-center rounded-full bg-white/30 backdrop-blur">
                     <Plus className="h-16 w-16 text-white" />
                   </div>
-                  <h3 className="mb-2 text-2xl font-bold text-white">Add 4th Pokémon</h3>
-                  <p className="text-sm text-white/90">Enter a Pokémon ID (1-898)</p>
+                  <h3 className="mb-2 text-2xl font-bold text-white">Add 4th Corsicamon</h3>
+                  <p className="text-sm text-white/90">Enter a Corsicamon ID (1-8)</p>
                 </div>
 
                 <div className="mb-4">
@@ -258,7 +314,7 @@ export default function PokemonPicker() {
                     disabled={addingPokemon}
                     value={inputId}
                     type="number"
-                    max="898"
+                    max="8"
                     min="1"
                   />
                 </div>
@@ -278,7 +334,7 @@ export default function PokemonPicker() {
                   ) : (
                     <>
                       <Plus className="h-5 w-5" />
-                      Add Pokémon
+                      Add Corsicamon
                     </>
                   )}
                 </button>
