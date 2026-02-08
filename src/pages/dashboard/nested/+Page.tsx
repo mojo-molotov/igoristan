@@ -1,13 +1,20 @@
 import { navigate } from 'vike/client/router';
 
+import { useAutoPlayAudio } from '@/hooks/useAutoplayAudio';
 import Loading from '@/components/Loading';
 import { useAuth } from '@/hooks/useAuth';
 import ROUTES from '@/config/routes';
 import Main from '@/fragments/Main';
 import H1 from '@/fragments/H1';
 
+import figatelluForeverSongUrl from '../../../../assets/sounds/music/figatellu-forever.mp3';
+
 const DashboardNested = () => {
   const { isAuthenticatedWithMFA, isAuthenticated, isLoading, logout } = useAuth();
+
+  const audioRef = useAutoPlayAudio({
+    volume: 1
+  });
 
   if (isLoading) {
     return (
@@ -40,6 +47,12 @@ const DashboardNested = () => {
             Logout
           </button>
         </div>
+        <audio
+          className="mx-auto mb-12 w-full max-w-[80vw] rounded-md border-2 border-amber-600 p-2"
+          src={figatelluForeverSongUrl}
+          ref={audioRef}
+          controls
+        />
       </section>
     </Main>
   );

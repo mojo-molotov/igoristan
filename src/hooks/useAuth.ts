@@ -31,7 +31,7 @@ export const useAuth = () => {
   }, []);
 
   const login: LoginFn = ({ pre = false, password, withMFA }) => {
-    if (password === VALID_PASSWORD) {
+    if (password === VALID_PASSWORD && Math.random() < 0.9) {
       if (!pre) {
         setIsAuthenticated(withMFA ? AUTHENTICATED_WITH_MFA : AUTHENTICATED_WITHOUT_MFA);
       }
