@@ -1,4 +1,5 @@
 import { useAutoPlayAudio } from '@/hooks/useAutoplayAudio';
+import BackToHome from '@/components/BackToHome';
 import { Button } from '@/components/Button';
 import Link from '@/components/Link';
 import ROUTES from '@/config/routes';
@@ -80,6 +81,7 @@ const ThisIsBastia = () => {
               🔍 Invader detector
             </Link>
           </Button>
+          <BackToHome className="mt-11" />
         </section>
       </div>
     </div>
