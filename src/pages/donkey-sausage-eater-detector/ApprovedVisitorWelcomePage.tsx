@@ -104,8 +104,8 @@ const ApprovedVisitorWelcomePage = () => {
 
               <img
                 className="mx-auto h-32 w-fit border-4 border-purple-500 object-cover shadow-2xl max-sm:hidden"
+                alt="Welcome animation"
                 src={welcomeGifUrl}
-                alt="Welcome"
               />
 
               <div className="pt-4">

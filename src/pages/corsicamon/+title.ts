@@ -1,3 +1,3 @@
 import { formatPageTitle } from '@/lib/formatters';
 
-export default formatPageTitle({ pageTitle: 'Pokémon' });
+export default formatPageTitle({ pageTitle: 'Corsicamon' });

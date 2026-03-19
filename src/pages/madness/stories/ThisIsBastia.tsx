@@ -51,7 +51,7 @@ const ThisIsBastia = () => {
 
             <p className="mb-6 text-center text-5xl font-bold tracking-wide text-red-500 uppercase max-sm:text-3xl">"Madness?"</p>
 
-            <img className="border border-white" src={thisIsBastiaMemeUrl} alt="" />
+            <img className="border border-white" src={thisIsBastiaMemeUrl} alt="This is Bastia meme" />
           </div>
         </section>
 
@@ -62,7 +62,7 @@ const ThisIsBastia = () => {
               Corsicans love their donkeys, <strong className="text-red-400">go back to your country</strong>.
             </p>
           </div>
-          <img className="mx-auto mt-8 border border-white" src={iLoveDonkeysMemeUrl} alt="" />
+          <img className="mx-auto mt-8 border border-white" alt="I love donkeys shirt" src={iLoveDonkeysMemeUrl} />
           <div className="mt-4 space-y-2">
             <p className="text-center text-xl">
               The donkey is sacred in Corsica. The Sicilian? Not so much.

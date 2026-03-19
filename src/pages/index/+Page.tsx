@@ -162,8 +162,8 @@ const Home = () => {
           }
           className="floating-balloon fixed -z-5"
           src={pickRandom(balloonsGifs)}
+          alt="Balloon icon"
           key={balloon.id}
-          alt=""
         />
       ))}
 
@@ -171,7 +171,7 @@ const Home = () => {
         <section className="my-8 flex flex-col items-center space-y-4" id="content">
           <H1 className="text-center text-4xl font-extrabold text-white md:text-6xl lg:text-7xl">{BRAND}</H1>
           <a href="https://rutube.ru/video/10c208b1ae943e5f9efd3a795c856f8a/" rel="noopener noreferrer nofollow" target="_blank">
-            <img className="rounded-2xl rounded-tr-xs rounded-bl-xs" src={welcomeHomepageAnimationUrl} alt="" />
+            <img className="rounded-2xl rounded-tr-xs rounded-bl-xs" src={welcomeHomepageAnimationUrl} alt="Welcome animation" />
           </a>
           <div className="flex w-full max-w-sm flex-col space-y-4">
             {links.map((link) => (
@@ -185,7 +185,7 @@ const Home = () => {
             ))}
           </div>
           <a href="https://rutube.ru/video/a6c7526d690cb841b8096c86a50a6cd5/" rel="noopener noreferrer nofollow" target="_blank">
-            <img className="w-[30vw] min-w-72" src={welcomeGifUrl} alt="" />
+            <img className="w-[30vw] min-w-72" alt="Welcome animation" src={welcomeGifUrl} />
           </a>
 
           <audio
@@ -197,7 +197,7 @@ const Home = () => {
           />
 
           <a href="https://rutube.ru/video/5eabee68593e50f2415e98d802a90dcd/" rel="noopener noreferrer nofollow" target="_blank">
-            <img src={abstractRoundRoundGifUrl} className="mt-4" alt="" />
+            <img src={abstractRoundRoundGifUrl} alt="Abstract animation" className="mt-4" />
           </a>
         </section>
       </Main>

@@ -21,7 +21,7 @@ const Text = () => {
         controls
         loop
       />
-      <img className="mx-auto mb-24 h-auto w-24 rounded-md object-cover" src={candleGifUrl} draggable={false} loading="lazy" alt="" />
+      <img className="mx-auto mb-24 h-auto w-24 rounded-md object-cover" alt="Animated candle" src={candleGifUrl} draggable={false} loading="lazy" />
 
       <section className="mb-12">
         <h2 className="mb-6 border-b-2 border-amber-600 pb-2 text-3xl font-bold text-amber-100">Chapter 1: The Lamentation of the Unworthy Files</h2>

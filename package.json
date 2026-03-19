@@ -1,7 +1,7 @@
 {
   "name": "igoristan",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.2",
   "type": "module",
   "scripts": {
     "wipe-wireit": "make wipe-wireit",
@@ -42,7 +42,7 @@
     "@qalisa/vike-plugin-sitemap": "^1.7.0",
     "@tailwindcss/postcss": "^4.0.17",
     "@tailwindcss/vite": "^4.1.3",
-    "@types/node": "^22.13.14",
+    "@types/node": "^25.5.0",
     "@types/react": "^19.2.8",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.2",
@@ -76,7 +76,7 @@
     "inquirer": "^9.0.0"
   },
   "engines": {
-    "node": "^22.x",
+    "node": "^24.x",
     "pnpm": "10.x"
   },
   "wireit": {

@@ -17,7 +17,7 @@ const Cors = () => (
       className="overflow-hidden border-b-4 border-red-600 bg-cover bg-center bg-no-repeat"
     >
       <div className="mx-auto max-w-6xl px-6 py-24 text-center">
-        <img className="mx-auto mb-8 h-48" src={corsicaFlagUrl} alt="" />
+        <img className="mx-auto mb-8 h-48" src={corsicaFlagUrl} alt="Corsica flag" />
         <h1 className="mb-6 text-6xl leading-tight font-bold text-white md:text-7xl">
           CORS Errors:
           <br />
@@ -48,7 +48,7 @@ const Cors = () => (
           </p>
 
           <div className="my-8 rounded-lg border-2 border-amber-600/30 bg-slate-800/50 p-8">
-            <img src={corsErrorCreativeUrl} alt="" />
+            <img alt="CORS Errors illustration" src={corsErrorCreativeUrl} />
           </div>
 
           <p>Every developer in the world knows CORS errors. They're frustrating. They're confusing. They make people want to flip their desk.</p>
@@ -63,7 +63,7 @@ const Cors = () => (
         <p className="mb-12 text-center font-serif text-xl text-amber-300 italic">The most obvious choice in the history of web development</p>
 
         <div className="mb-10 rounded-lg border-2 border-amber-500 bg-slate-900/60 p-8">
-          <img src={elbaErrorCreativeUrl} alt="" />
+          <img alt="ELBA Errors illustration" src={elbaErrorCreativeUrl} />
         </div>
 
         <div className="space-y-8 text-lg">
@@ -102,7 +102,7 @@ const Cors = () => (
         <h2 className="mb-8 border-l-8 border-green-600 pl-6 text-4xl font-bold text-amber-100">Our Solution: The Static Revolution</h2>
 
         <div className="mb-8 rounded-lg border-2 border-green-600/30 bg-slate-800/50 p-8">
-          <img src={corsicaStacksCreativeUrl} className="mx-auto" alt="" />
+          <img src={corsicaStacksCreativeUrl} className="mx-auto" alt="Corsica Stack" />
         </div>
 
         <div className="space-y-6 text-lg leading-relaxed">
