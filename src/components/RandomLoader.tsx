@@ -6,10 +6,10 @@ import { randint } from '@/lib/randint';
 
 interface RandomLoaderProps {
   loadedLabel: string;
-  id: string;
+  dataTestId: string;
 }
 
-const RandomLoader: FunctionComponent<RandomLoaderProps> = ({ loadedLabel, id }) => {
+const RandomLoader: FunctionComponent<RandomLoaderProps> = ({ loadedLabel, dataTestId }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const RandomLoader: FunctionComponent<RandomLoaderProps> = ({ loadedLabel, id })
 
   if (!isLoaded) {
     return (
-      <div className="flex items-center justify-center bg-gray-100" id={id}>
+      <div className="random-loader-element flex items-center justify-center bg-gray-100" data-testid={dataTestId}>
         <div className="text-center">
           <div className="mb-4 inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent" />
           <p className="text-gray-600">Loading...</p>
@@ -34,7 +34,7 @@ const RandomLoader: FunctionComponent<RandomLoaderProps> = ({ loadedLabel, id })
   }
 
   return (
-    <div className="flex items-center justify-center bg-gray-100" id={id}>
+    <div className="random-loader-element flex items-center justify-center bg-gray-100" id={dataTestId}>
       <div className="rounded-lg bg-white px-8 py-6 shadow-lg">
         <h1 className="max-w-[80vw] text-2xl font-bold wrap-break-word whitespace-normal text-green-600">{loadedLabel}</h1>
       </div>

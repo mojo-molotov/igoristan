@@ -80,10 +80,10 @@ const RandomLoaders = () => {
     <Main className="bg-gray-100 p-8">
       <section className="mt-2">
         <h1 className="mb-2 text-center text-4xl font-extrabold text-gray-900">Kind words with spinners</h1>
-        <div className="mt-10 flex flex-wrap justify-center gap-16">
+        <div className="mt-10 flex flex-wrap justify-center gap-16" data-testid="random-loaded-elements-container">
           {Array.from({ length: numberOfLoaders }, (_, i) => (
             <div className="h-fit w-fit" key={i}>
-              <RandomLoader loadedLabel={getNextLoadedLabel()} id={`${i + 1}`} />
+              <RandomLoader loadedLabel={getNextLoadedLabel()} dataTestId={`${i + 1}`} />
             </div>
           ))}
         </div>
