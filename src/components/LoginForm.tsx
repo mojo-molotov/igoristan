@@ -109,7 +109,7 @@ const LoginForm: FunctionComponent<LoginFormProps> = ({ onLogin }) => {
     <div className="flex min-h-100 items-center justify-center">
       <div className="w-full max-w-md space-y-6 rounded-lg border-2 border-gray-300 bg-white p-8 shadow-lg">
         <div className="text-center">
-          <h2 className="text-3xl font-bold">Authentication Required</h2>
+          <h1 className="text-3xl font-bold">Authentication Required</h1>
           <p className="mt-2 text-sm text-gray-600">Please login to access this page</p>
         </div>
         <form onSubmit={handleSubmit} className="space-y-4">
