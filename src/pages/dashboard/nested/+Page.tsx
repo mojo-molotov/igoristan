@@ -43,7 +43,11 @@ const DashboardNested = () => {
             Back to Dashboard
           </a>
 
-          <button className="rounded-md bg-red-600 px-6 py-3 font-semibold text-white shadow hover:cursor-pointer hover:bg-red-700" onClick={logout}>
+          <button
+            className="rounded-md bg-red-600 px-6 py-3 font-semibold text-white shadow hover:cursor-pointer hover:bg-red-700"
+            data-testid="logout-btn"
+            onClick={logout}
+          >
             Logout
           </button>
         </div>

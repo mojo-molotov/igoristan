@@ -65,6 +65,7 @@ const Dashboard = () => {
               setMfaError('');
               logout();
             }}
+            data-testid="logout-btn"
           >
             Logout
           </button>
