@@ -33,7 +33,7 @@ export default function Page() {
   });
 
   useEffect(() => {
-    document.title = show404 ? formatPageTitle({ errorCode: '404' }) : formatPageTitle({ errorCode: '500' });
+    document.title = show404 ? formatPageTitle({ errorCode: '-404-' }) : formatPageTitle({ errorCode: '500' });
     setIsMounted(true);
   }, [show404]);
 
@@ -41,7 +41,7 @@ export default function Page() {
     return (
       <Main className={mainClassname}>
         <section className="mt-7 space-y-4" id="404">
-          <ErrorCode>404</ErrorCode>
+          <ErrorCode>-404-</ErrorCode>
           <BackToHome />
         </section>
       </Main>
