@@ -70,6 +70,7 @@ const UploadPreview: FunctionComponent<PreviewProps> = ({
           },
           className
         )}
+        data-testid="upload-form-previews-container"
       >
         {blobs.map((blob, index) => renderPreview(blob, index, index === animatedIndex))}
         {renderAddElementButton()}
