@@ -55,6 +55,7 @@ const Dashboard = () => {
         <div className="flex gap-4">
           <button
             className="rounded-md bg-purple-600 px-6 py-3 font-semibold text-white shadow hover:cursor-pointer hover:bg-purple-700"
+            data-testid="go-to-nested-page-btn"
             onClick={handleNestedPageClick}
           >
             Go to Nested Page
