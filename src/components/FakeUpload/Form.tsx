@@ -42,11 +42,16 @@ const MysticalConfirmation = ({ onConfirm, onCancel }: { onConfirm: () => void; 
         <div className="flex justify-center gap-4">
           <button
             className="transform rounded-lg bg-yellow-600 px-6 py-3 font-semibold text-white shadow-lg transition-all hover:scale-105 hover:bg-yellow-700"
+            data-testid="amen-btn"
             onClick={onConfirm}
           >
             ✨ Amen
           </button>
-          <button className="rounded-lg bg-gray-600 px-6 py-3 font-semibold text-white shadow-lg transition-all hover:bg-gray-700" onClick={onCancel}>
+          <button
+            className="rounded-lg bg-gray-600 px-6 py-3 font-semibold text-white shadow-lg transition-all hover:bg-gray-700"
+            data-testid="forgive-me-btn"
+            onClick={onCancel}
+          >
             🙏 Forgive me my sins
           </button>
         </div>
