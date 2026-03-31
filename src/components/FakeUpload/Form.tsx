@@ -141,7 +141,7 @@ const FakeUploadForm = () => {
               </div>
             )}
             {successMessage && <p className="text-center font-semibold text-green-600">✨ {successMessage} ✨</p>}
-            <Button disabled={formImages.length === 0 || uploading} className="w-full" type="submit">
+            <Button disabled={formImages.length === 0 || uploading} data-testid="upload-btn" className="w-full" type="submit">
               {uploading ? 'Uploading...' : 'Upload'}
             </Button>
           </div>
