@@ -144,7 +144,11 @@ function ImagesDropzone({ required, limit, label, hint, lock, id }: ImagesDropzo
         blobs={images}
       />
 
-      {error && <p className="text-sm text-red-500">{error}</p>}
+      {error && (
+        <p data-testid="images-dropzone-error-msg" className="text-sm text-red-500">
+          {error}
+        </p>
+      )}
 
       {hint}
     </div>
