@@ -94,7 +94,13 @@ function ImagesDropzone({ required, limit, label, hint, lock, id }: ImagesDropzo
           />
         </div>
 
-        {!lock && <XButton title={isSingleton ? 'Delete image' : `Delete image ${index + 1}`} handleRemove={() => handleImageRemove(index)} />}
+        {!lock && (
+          <XButton
+            title={isSingleton ? 'Delete image' : `Delete image ${index + 1}`}
+            handleRemove={() => handleImageRemove(index)}
+            data-testid={`delete-image-${index + 1}`}
+          />
+        )}
       </div>
     ),
 

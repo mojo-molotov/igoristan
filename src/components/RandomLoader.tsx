@@ -6,7 +6,7 @@ import { randint } from '@/lib/randint';
 
 interface RandomLoaderProps {
   loadedLabel: string;
-  dataTestId: string;
+  dataTestId?: string;
 }
 
 const RandomLoader: FunctionComponent<RandomLoaderProps> = ({ loadedLabel, dataTestId }) => {

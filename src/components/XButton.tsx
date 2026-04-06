@@ -6,11 +6,12 @@ import { cn } from '@/lib/utils';
 
 interface XButtonProps {
   handleRemove: () => void;
+  dataTestId?: string;
   className?: string;
   title: string;
 }
 
-const XButton: FunctionComponent<XButtonProps> = ({ handleRemove, className, title }) => {
+const XButton: FunctionComponent<XButtonProps> = ({ handleRemove, dataTestId, className, title }) => {
   return (
     <button
       className={cn(
@@ -21,6 +22,7 @@ const XButton: FunctionComponent<XButtonProps> = ({ handleRemove, className, tit
         e.stopPropagation();
         handleRemove();
       }}
+      data-testid={dataTestId}
       aria-label={title}
       title={title}
       type="button"
