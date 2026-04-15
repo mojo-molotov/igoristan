@@ -211,7 +211,7 @@ export default function PokemonPicker() {
         className="flex min-h-screen flex-col items-center justify-center bg-linear-to-br from-red-500 via-yellow-400 to-blue-500 px-4"
         id="fetch-error"
       >
-        <div className="max-w-md rounded-3xl bg-white p-8 text-center shadow-2xl">
+        <div className="max-w-md rounded-3xl bg-white p-8 text-center shadow-2xl" data-testid="corsicadex-network-error">
           <div className="mb-6">
             <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-red-100">
               <span className="text-4xl">⚠️</span>
@@ -221,6 +221,7 @@ export default function PokemonPicker() {
           </div>
           <button
             className="flex w-full items-center justify-center gap-2 rounded-xl bg-linear-to-r from-red-500 to-blue-500 px-6 py-3 font-bold text-white shadow-lg transition-all hover:from-red-600 hover:to-blue-600"
+            data-testid="corsicadex-network-error-retry-btn"
             onClick={fetchRandomPokemons}
           >
             <RefreshCw className="h-5 w-5" />
@@ -257,7 +258,9 @@ export default function PokemonPicker() {
             >
               <div className="relative bg-linear-to-br from-gray-100 to-gray-200 p-8">
                 <div className="absolute top-4 right-4 rounded-full bg-white/80 px-3 py-1">
-                  <span className="font-bold text-gray-600">#{pokemon.id}</span>
+                  <span data-testid={`pokemon-id-${index + 1}`} className="font-bold text-gray-600">
+                    #{pokemon.id}
+                  </span>
                 </div>
                 <img
                   src={pokemon.sprites.other['official-artwork'].front_default || pokemon.sprites.front_default}
@@ -312,16 +315,19 @@ export default function PokemonPicker() {
                     <Plus className="h-16 w-16 text-white" />
                   </div>
                   <h3 className="mb-2 text-2xl font-bold text-white">Add 4th Corsicamon</h3>
-                  <p className="text-sm text-white/90">Enter a Corsicamon ID (1-8)</p>
                 </div>
 
                 <div className="mb-4">
+                  <label className="text-sm text-white/90" htmlFor="enter-id-input">
+                    Enter a Corsicamon ID (1-8)
+                  </label>
                   <input
                     className="w-full rounded-xl border-2 border-white/50 bg-white/90 px-4 py-3 text-center text-xl font-bold text-gray-800 placeholder-gray-400 focus:border-white focus:outline-none disabled:opacity-50"
                     onKeyDown={(e) => e.key === 'Enter' && !addingPokemon && handleAddPokemon()}
                     onChange={(e) => setInputId(e.target.value)}
                     placeholder="Enter ID..."
                     disabled={addingPokemon}
+                    id="enter-id-input"
                     value={inputId}
                     type="number"
                     max="8"
@@ -334,6 +340,7 @@ export default function PokemonPicker() {
                 <button
                   className="flex w-full items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 font-bold text-red-500 shadow-lg transition-all hover:scale-105 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50"
                   disabled={addingPokemon || !inputId}
+                  data-testid="add-corsicamon-btn"
                   onClick={handleAddPokemon}
                 >
                   {addingPokemon ? (
@@ -367,6 +374,7 @@ export default function PokemonPicker() {
             <button
               className="mx-auto flex transform items-center gap-2 rounded-full bg-white px-6 py-3 text-lg font-bold text-red-500 shadow-lg transition-all hover:scale-105 hover:shadow-xl"
               onClick={fetchRandomPokemons}
+              data-testid="new-draw-btn"
             >
               <RefreshCw className="h-5 w-5" />
               New Draw
