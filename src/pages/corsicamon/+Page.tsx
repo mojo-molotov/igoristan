@@ -193,6 +193,7 @@ export default function PokemonPicker() {
           <button
             className="flex w-full items-center justify-center gap-2 rounded-xl bg-linear-to-r from-blue-500 to-purple-500 px-6 py-3 font-bold text-white shadow-lg transition-all hover:from-blue-600 hover:to-purple-600 disabled:cursor-not-allowed disabled:opacity-50"
             onClick={() => setApiKey(apiKeyInput)}
+            data-testid="access-corsicadex-btn"
             disabled={!apiKeyInput}
           >
             <Key className="h-5 w-5" />
