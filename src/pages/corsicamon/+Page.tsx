@@ -176,12 +176,16 @@ export default function PokemonPicker() {
           </div>
 
           <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700" htmlFor="enter-api-key">
+              API key
+            </label>
             <input
               className="w-full rounded-xl border-2 border-gray-300 bg-white px-4 py-3 text-center font-mono text-gray-800 placeholder-gray-400 focus:border-blue-500 focus:outline-none"
               onKeyDown={(e) => e.key === 'Enter' && apiKeyInput && setApiKey(apiKeyInput)}
               onChange={(e) => setApiKeyInput(e.target.value)}
               placeholder="Enter your API key..."
               value={apiKeyInput}
+              id="enter-api-key"
               type="text"
             />
           </div>
