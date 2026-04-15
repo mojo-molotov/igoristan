@@ -171,7 +171,7 @@ export default function PokemonPicker() {
             <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-blue-100">
               <Key className="h-10 w-10 text-blue-600" />
             </div>
-            <h2 className="mb-2 text-2xl font-bold text-gray-800">Enter API Key</h2>
+            <h1 className="mb-2 text-2xl font-bold text-gray-800">Enter API Key</h1>
             <p className="text-gray-600">Please enter your Corsicadex API key to continue</p>
           </div>
 
