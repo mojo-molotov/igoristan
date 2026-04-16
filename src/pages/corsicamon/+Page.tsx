@@ -28,6 +28,7 @@ export default function PokemonPicker() {
     setIsComplete(false);
     setErrorMessage('');
     setFetchError(false);
+    setInputId('');
     const ids: number[] = [];
 
     while (ids.length < 3) {
