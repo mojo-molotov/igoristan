@@ -107,7 +107,7 @@ const ChaoticForm = () => {
 
         const errorTimeout = setTimeout(() => {
           setRandomError('');
-        }, 3e3);
+        }, 10e3);
 
         return () => clearTimeout(errorTimeout);
       } else {
@@ -115,7 +115,7 @@ const ChaoticForm = () => {
 
         const successTimeout = setTimeout(() => {
           setSuccessMessage('');
-        }, 3e3);
+        }, 10e3);
 
         return () => clearTimeout(successTimeout);
       }
