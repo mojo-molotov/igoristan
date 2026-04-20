@@ -140,7 +140,9 @@ const ChaoticForm = () => {
 
       <div className="space-y-6 rounded-lg bg-white p-8 shadow-xl">
         <div>
-          <label className="mb-2 block font-semibold text-gray-700">Favorite Bible Verse</label>
+          <label className="mb-2 block font-semibold text-gray-700" htmlFor="bible-verse">
+            Favorite Bible Verse
+          </label>
           <input
             className="w-full rounded-md border-2 border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none"
             placeholder="e.g., John 3:16"
@@ -148,13 +150,16 @@ const ChaoticForm = () => {
             onChange={handleChange}
             onBlur={handleBlur}
             name="bibleVerse"
+            id="bible-verse"
             type="text"
           />
           {fieldErrors.bibleVerse && <p className="catch-me-if-you-can mt-1 text-sm text-red-600">❌ {fieldErrors.bibleVerse}</p>}
         </div>
 
         <div>
-          <label className="mb-2 block font-semibold text-gray-700">Favorite Corsican City</label>
+          <label className="mb-2 block font-semibold text-gray-700" htmlFor="corsican-city">
+            Favorite Corsican City
+          </label>
           <input
             className="w-full rounded-md border-2 border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none"
             placeholder="e.g., Ajaccio, Bastia, Corte"
@@ -162,17 +167,21 @@ const ChaoticForm = () => {
             onChange={handleChange}
             onBlur={handleBlur}
             name="corsicaCity"
+            id="corsican-city"
             type="text"
           />
           {fieldErrors.corsicaCity && <p className="catch-me-if-you-can mt-1 text-sm text-red-600">❌ {fieldErrors.corsicaCity}</p>}
         </div>
 
         <div>
-          <label className="mb-2 block font-semibold text-gray-700">Most Inspiring Apostle</label>
+          <label className="mb-2 block font-semibold text-gray-700" htmlFor="inspiring-apostle">
+            Most Inspiring Apostle
+          </label>
           <select
             className="w-full rounded-md border-2 border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none"
             value={formData.apostleName}
             onChange={handleChange}
+            id="inspiring-apostle"
             onBlur={handleBlur}
             name="apostleName"
           >
@@ -187,7 +196,9 @@ const ChaoticForm = () => {
         </div>
 
         <div>
-          <label className="mb-2 block font-semibold text-gray-700">Mount Cinto Height (meters)</label>
+          <label className="mb-2 block font-semibold text-gray-700" htmlFor="cinto-height">
+            Mount Cinto Height (meters)
+          </label>
           <input
             className="w-full rounded-md border-2 border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none"
             value={formData.mountainHeight}
@@ -195,17 +206,21 @@ const ChaoticForm = () => {
             name="mountainHeight"
             onBlur={handleBlur}
             placeholder="2706"
+            id="cinto-height"
             type="number"
           />
           {fieldErrors.mountainHeight && <p className="catch-me-if-you-can mt-1 text-sm text-red-600">❌ {fieldErrors.mountainHeight}</p>}
         </div>
 
         <div>
-          <label className="mb-2 block font-semibold text-gray-700">Personal Revelation</label>
+          <label className="mb-2 block font-semibold text-gray-700" htmlFor="personal-revelation">
+            Personal Revelation
+          </label>
           <textarea
             className="w-full rounded-md border-2 border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none"
             placeholder="Share your divine insight about the island..."
             value={formData.revelation}
+            id="personal-revelation"
             onChange={handleChange}
             onBlur={handleBlur}
             name="revelation"
@@ -216,6 +231,7 @@ const ChaoticForm = () => {
 
         <button
           className="w-full rounded-md bg-blue-600 px-6 py-3 font-semibold text-white shadow-lg hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-gray-400"
+          data-testid="chaotic-form-submit-btn"
           disabled={isSubmitting}
           onClick={handleSubmit}
         >
