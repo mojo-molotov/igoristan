@@ -172,7 +172,7 @@ const Cors = () => (
               "Every time I see a CORS error in my console, I think of my beautiful island being insulted. I switched to Astro. Now my conscience is
               clear."
             </p>
-            <footer className="text-amber-300"> Santu Acquaviva, Developer, Sartène</footer>
+            <footer className="text-amber-300">— Santu Acquaviva, Developer, Sartène</footer>
           </blockquote>
 
           <blockquote className="rounded-r-lg border-l-4 border-amber-500 bg-slate-800/60 p-6">
