@@ -57,11 +57,11 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0(typescript@6.0.3)
       vike:
-        specifier: ^0.4.258
-        version: 0.4.258(react-streaming@0.4.17(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(srvx@0.11.15)(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2))
+        specifier: ^0.4.259
+        version: 0.4.259(react-streaming@0.4.19(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(srvx@0.11.15)(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2))
       vike-react:
-        specifier: ^0.6.21
-        version: 0.6.21(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(vike@0.4.258(react-streaming@0.4.17(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(srvx@0.11.15)(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2)))
+        specifier: ^0.6.24
+        version: 0.6.24(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(vike@0.4.259(react-streaming@0.4.19(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(srvx@0.11.15)(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2)))
     devDependencies:
       '@commitlint/config-conventional':
         specifier: ^19.8.0
@@ -261,11 +261,11 @@ packages:
   '@brillout/import@0.2.6':
     resolution: {integrity: sha512-1GUTmADc8trUC1YSW2lp9r6PmwluMoEyHajnE1kxVdbKGD0wJOlq/DvTWMUqLtBDCnQR+n//qgMtz6HwA/lotA==}
 
-  '@brillout/json-serializer@0.5.21':
-    resolution: {integrity: sha512-pzzT4U4A9rk7eZpFjloRoMrGG2jnptwNGAhPIH7ZVjCMHd6TaJ29hrERPaY6Bp3Xdzu8JWlHI1o3x7PysxkaHQ==}
-
   '@brillout/json-serializer@0.5.23':
     resolution: {integrity: sha512-nM7okvu4UaoxYshKB+903s3/UpIBdkJl++iDT3gOLnHaSqY6HbhAXTsUTxrroAAcIt6RKQfShaKjCBlzR2A1Gg==}
+
+  '@brillout/json-serializer@0.5.25':
+    resolution: {integrity: sha512-/Ahv1XIHAYyROWfyOQZxbxmkvM3ef3aMPPzEC0EfkyZUFb88y/nFFwCFvYUjE20MGoF8/9Z1jIy7ihkpkE+maw==}
 
   '@brillout/picocolors@1.0.30':
     resolution: {integrity: sha512-xJjdgyN1H0qh2nB2xlzazIipiDixuUd9oD5msh/Qv5bXJG9j8MSD/m4lREt6Z10ej6FF31b8vB4tdT7lDUbiyA==}
@@ -1013,8 +1013,8 @@ packages:
     peerDependencies:
       vite: '>=7.1'
 
-  '@universal-deploy/node@0.1.6':
-    resolution: {integrity: sha512-VcYUNiE596Mbm0fCX1TWK6fAXgJgOz4Msa+PORxZCPZrTLw+qDABeE031XWSfQ8bAF9d/DXtGywIA/RAi8oCXg==}
+  '@universal-deploy/node@0.1.7':
+    resolution: {integrity: sha512-HxSiVZ2CYGX0M9RFl7cxf7Pfaz+vAA3ZfHJ6Yvflv04Gtyfyus2Z6xGSOluy3c8OxAyVu8fvhoXinU0ziHmaGA==}
     peerDependencies:
       vite: '>=7.1'
     peerDependenciesMeta:
@@ -1029,8 +1029,8 @@ packages:
       srvx:
         optional: true
 
-  '@universal-deploy/vite@0.1.7':
-    resolution: {integrity: sha512-jqdNU9umuuKK40zPLDaJoqlQLJB/wTqi6+yMLWI0KzMighJqgtiVMhdSuvJIP9SyIBjZ+yxieCj8dnQCd/cI8w==}
+  '@universal-deploy/vite@0.1.10':
+    resolution: {integrity: sha512-fORNv7+cTgWT1iS2ywUvwaxVkn7QCUHwXwZjfEEv9tL//MoTdwmosq7z2vB4tyN8ERGgWKU7MaQN+YNxfg/68g==}
     peerDependencies:
       vite: '>=7.1'
     peerDependenciesMeta:
@@ -1908,7 +1908,7 @@ packages:
 
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
-    deprecated: Glob versions prior to v9 are no longer supported
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   global-directory@4.0.1:
     resolution: {integrity: sha512-wHTUcDUoZ1H5/0iVqEudYW4/kAlN5cZ3j/bXn0Dpbizl9iaUVeWSHqiOjsgk6OW2bkLclbBjzewBz6weQ1zA2Q==}
@@ -2766,8 +2766,8 @@ packages:
     resolution: {integrity: sha512-QgT5//D3jfjJb6Gsjxv0Slpj23ip+HtOpnNgnb2S5zU3CB26G/IDPGoy4RJB42wzFE46DRsstbW6tKHoKbhAxw==}
     engines: {node: '>=0.10.0'}
 
-  react-streaming@0.4.17:
-    resolution: {integrity: sha512-FgY2BSqqgpLv0Gw5wrX3kPZttBW50vSHFZCirFbgz8AT6lZHFjhOqlhP+x7zdzAv57aD9gclAYCnTafobOJEJw==}
+  react-streaming@0.4.19:
+    resolution: {integrity: sha512-7ahdcGA5hGruNsLw6rOihWtfiKYb2NvmAYo0OaVnqiHoX5QfVNL1vgY5HkRJb5pc2Veeju6tmvaYGQ+jhrwwTA==}
     peerDependencies:
       react: '>=19'
       react-dom: '>=19'
@@ -3222,15 +3222,15 @@ packages:
       typescript:
         optional: true
 
-  vike-react@0.6.21:
-    resolution: {integrity: sha512-mZyskc8xXJbUbK8/Lsztgd0MhrCxnQjHhCpruMVokA+jJC1uuZEAgwoO5Fptoiyqm2pjDfqtAGDw+1pZ97d9OA==}
+  vike-react@0.6.24:
+    resolution: {integrity: sha512-IoZ1Owlhc1muhHDdqOvqjchT8gcMmWvYWPdatU/aSY7qr/PPhp63+Bj0SPZgl5F3k3YWEZVmbGwsiPP8r3wy9A==}
     peerDependencies:
       react: '>=19'
       react-dom: '>=19'
       vike: '>=0.4.250'
 
-  vike@0.4.258:
-    resolution: {integrity: sha512-JfnVaVw4XT3uloZoehFbKSh+CIuDAypbvppdXLL7iYWWLy71/Mfz6AmijEfhoHtXkuJ8NRDybO6ABnyxMrIuiw==}
+  vike@0.4.259:
+    resolution: {integrity: sha512-5S+rgfLYfozCqXTlyZzr6P4FXOIoPcsSbqYO32keBK2Jun4AKR5BI/sQiP3w09Zq/WZkywEu0ofHFAAxtaIdSg==}
     engines: {node: '>=20.19.0'}
     hasBin: true
     peerDependencies:
@@ -3490,9 +3490,9 @@ snapshots:
 
   '@brillout/import@0.2.6': {}
 
-  '@brillout/json-serializer@0.5.21': {}
-
   '@brillout/json-serializer@0.5.23': {}
+
+  '@brillout/json-serializer@0.5.25': {}
 
   '@brillout/picocolors@1.0.30': {}
 
@@ -4193,7 +4193,7 @@ snapshots:
     transitivePeerDependencies:
       - srvx
 
-  '@universal-deploy/node@0.1.6(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2))':
+  '@universal-deploy/node@0.1.7(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2))':
     dependencies:
       '@universal-deploy/store': 0.2.1(srvx@0.11.15)
       magic-string: 0.30.21
@@ -4207,10 +4207,10 @@ snapshots:
     optionalDependencies:
       srvx: 0.11.15
 
-  '@universal-deploy/vite@0.1.7(srvx@0.11.15)(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2))':
+  '@universal-deploy/vite@0.1.10(srvx@0.11.15)(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2))':
     dependencies:
       '@universal-deploy/netlify': 0.2.2(srvx@0.11.15)(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2))
-      '@universal-deploy/node': 0.1.6(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2))
+      '@universal-deploy/node': 0.1.7(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2))
       '@universal-deploy/store': 0.2.1(srvx@0.11.15)
       '@universal-middleware/express': 0.4.26(srvx@0.11.15)
       magic-string: 0.30.21
@@ -5980,10 +5980,10 @@ snapshots:
 
   react-refresh@0.18.0: {}
 
-  react-streaming@0.4.17(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+  react-streaming@0.4.19(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
     dependencies:
       '@brillout/import': 0.2.6
-      '@brillout/json-serializer': 0.5.21
+      '@brillout/json-serializer': 0.5.25
       '@brillout/picocolors': 1.0.30
       isbot-fast: 1.2.0
       react: 19.2.3
@@ -6505,14 +6505,14 @@ snapshots:
     optionalDependencies:
       typescript: 6.0.3
 
-  vike-react@0.6.21(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(vike@0.4.258(react-streaming@0.4.17(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(srvx@0.11.15)(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2))):
+  vike-react@0.6.24(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(vike@0.4.259(react-streaming@0.4.19(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(srvx@0.11.15)(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2))):
     dependencies:
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-      react-streaming: 0.4.17(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
-      vike: 0.4.258(react-streaming@0.4.17(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(srvx@0.11.15)(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2))
+      react-streaming: 0.4.19(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      vike: 0.4.259(react-streaming@0.4.19(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(srvx@0.11.15)(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2))
 
-  vike@0.4.258(react-streaming@0.4.17(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(srvx@0.11.15)(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2)):
+  vike@0.4.259(react-streaming@0.4.19(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(srvx@0.11.15)(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2)):
     dependencies:
       '@babel/core': 7.28.6
       '@babel/types': 7.28.6
@@ -6521,7 +6521,7 @@ snapshots:
       '@brillout/picocolors': 1.0.30
       '@brillout/vite-plugin-server-entry': 0.7.18
       '@universal-deploy/store': 0.2.1(srvx@0.11.15)
-      '@universal-deploy/vite': 0.1.7(srvx@0.11.15)(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2))
+      '@universal-deploy/vite': 0.1.10(srvx@0.11.15)(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2))
       '@universal-middleware/core': 0.4.17(srvx@0.11.15)
       '@universal-middleware/node': 0.1.0(srvx@0.11.15)
       cac: 6.7.14
@@ -6537,7 +6537,7 @@ snapshots:
       tinyglobby: 0.2.16
       vite-plugin-wrapper: 0.1.0(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2))
     optionalDependencies:
-      react-streaming: 0.4.17(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      react-streaming: 0.4.19(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       vite: 7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2)
     transitivePeerDependencies:
       - '@cloudflare/workers-types'
